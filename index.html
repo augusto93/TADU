@@ -1,140 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tadu</title>
-  <style>
-    * {
-      margin:0;
-      padding:0;
-    }
-    html{
-      
-    }
-    body {
-     margin:0;
-     padding:0;
-     background-color: black; 
-    }
-    ul {
-      padding: 0;
-      margin: 0;
-      list-style: none;
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <link rel="stylesheet" href="style.css" />
+    <title>Tadu</title>
+  </head>
+  <body>
+    <div id="app">
+      <header>
+        <div>
+          <nav class="menu">
+            <ul>
+              <li>About</li>
+              <li>Projects</li>
+              <li>Contact</li>
+            </ul>
+          </nav>
+          <nav class="translate">
+            <ul>
+              <li>PT</li>
+              <li>EN</li>
+            </ul>
+          </nav>
+        </div>
+      </header>
 
-    .container {
-      position: relative;
-      max-width:1280px;
-      margin: 0 auto;
-    }
+      <section class="all">
+        <div class="tadu">
+          <svg class="svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 59.7 72.7">
+            <path
+              d="M11.6 42.6l1.5 3.7H9.8L20 72.6h-4.9L4.9 46.4H1.5L0 42.6h11.6zm25.5 16.7h-4.9l-2.1-3.7h-3.7l.8 3.7h-4.9l-6.8-30h4.9l16.7 30zm-9-7.5L24 44.3l1.7 7.5h2.4zM49.6-.1L59.4 25c1.1 2.8-1 4.8-4.6 5-4.4.2-7.2-1.6-8.5-5L36.5-.1h4.9l9.8 25.2c.3.7 1.2 1.2 2.1 1.2.9 0 1.4-.6 1.1-1.2L44.7-.1h4.9zM38.9 20.8l7.8 20c1.1 2.8-1 5-4.6 5h-6.5l-11.7-30h6.5c3.6 0 7.4 2.3 8.5 5zm-4.9 0c-.3-.7-1.2-1.2-2.1-1.2h-1.6L39 42h1.6c.9 0 1.4-.6 1.1-1.2l-7.7-20z"
+              fill="#fff"
+            />
+          </svg>
+        </div>
 
-    header {
-      position:absolute;
-      z-index: 998;
-      top:60px;
-      right:0;
-      max-width:1280px;
-      
-    }
+        <div class="main-imgs">
+          <ul>
+            <li v-for="projetos in projetos">
+              <img :src="projetos.fotos[0].src" />
+              <span style="color: #ffffff">{{projetos.nome}}</span>
+            </li>
+          </ul>
+        </div>
+      </section>
 
-    header nav{
-      width:50%;
-      background-color: cornsilk;
-    }
-    
+      <script src="./app.js"></script>
+    </div>
 
-    section.all{
-      position: relative;
-      max-width:1280px;
-    }
+    <script>
+      let userViewHeight = window.innerHeight;
+      let taduDiv = document.querySelector(".svg").clientHeight;
 
-    .tadu {
-      position:fixed;
-      top:60px;
-      width:1280px;
-      z-index: 999;
-      height: 100vh;
-    }
-    .tadu svg{
-      position: absolute;
-      top:0;
-      right:0;
-      width:50%;
-    }
-    .main-imgs {
-      position:relative;
-      width:80%;
-      margin-left:60px;
-      margin-top: 110vh;
-    }
+      if (userViewHeight - 60 > taduDiv) {
+        console.log("deu bom");
+        document.querySelector(".svg").style.border = "none";
+      } else {
+        console.log("deu ruim");
+        document.querySelector(".svg").style.border = "thick solid #FF0000";
+      }
+      console.log(userViewHeight);
+      console.log(taduDiv);
 
-    .main-imgs img{
-      width:100%;
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <header>
-      <nav>
-        <ul>
-          <li>ds</li>
-          <li></li>
-          <li></li>
-        </ul>
-      </nav>
-    </header>
+      window.addEventListener("resize", function () {
+        let userViewHeight = window.innerHeight;
+        let taduDiv = document.querySelector(".svg").clientHeight;
 
-    
-    <section class="all">
-      <div class="tadu">
-        <svg class="svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 59.7 72.7"><path d="M11.6 42.6l1.5 3.7H9.8L20 72.6h-4.9L4.9 46.4H1.5L0 42.6h11.6zm25.5 16.7h-4.9l-2.1-3.7h-3.7l.8 3.7h-4.9l-6.8-30h4.9l16.7 30zm-9-7.5L24 44.3l1.7 7.5h2.4zM49.6-.1L59.4 25c1.1 2.8-1 4.8-4.6 5-4.4.2-7.2-1.6-8.5-5L36.5-.1h4.9l9.8 25.2c.3.7 1.2 1.2 2.1 1.2.9 0 1.4-.6 1.1-1.2L44.7-.1h4.9zM38.9 20.8l7.8 20c1.1 2.8-1 5-4.6 5h-6.5l-11.7-30h6.5c3.6 0 7.4 2.3 8.5 5zm-4.9 0c-.3-.7-1.2-1.2-2.1-1.2h-1.6L39 42h1.6c.9 0 1.4-.6 1.1-1.2l-7.7-20z" fill="#fff"/></svg>
-      </div>
-
-      <div class="main-imgs">
-        <img src="foto1.jpg" />
-        <img src="foto1.jpg" />
-        <img src="foto1.jpg" />
-        <img src="foto1.jpg" />
-        <img src="foto1.jpg" />
-      </div>
-    </section>
-
-    
-
-    
-  </div>
-
-  <script>
-    
-    let userViewHeight = window.innerHeight;
-    let taduDiv = document.querySelector('.svg').clientHeight;
-
-    if ((userViewHeight - 60) > taduDiv) {
-      console.log("deu bom")
-    } else {
-      console.log('deu ruim')
-    }
-    console.log(userViewHeight)
-    console.log(taduDiv);
-
-  window.addEventListener('resize', function () {  
-    let userViewHeight = window.innerHeight;
-    let taduDiv = document.querySelector('.svg').clientHeight;
-
-    if ((userViewHeight - 60) > taduDiv) {
-      console.log("deu bom")
-      document.querySelector('.svg').style.backgroundColor = "transparent";
-    } else {
-      console.log('deu ruim')
-      document.querySelector('.svg').style.backgroundColor = "blue";
-    }
-    console.log(userViewHeight)
-    console.log(taduDiv);
-  });
-  
-  </script>
-</body>
+        if (userViewHeight - 60 > taduDiv) {
+          console.log("deu bom");
+          document.querySelector(".svg").style.border = "none";
+        } else {
+          console.log("deu ruim");
+          document.querySelector(".svg").style.border = "thick solid #FF0000";
+        }
+        console.log(userViewHeight);
+        console.log(taduDiv);
+      });
+    </script>
+  </body>
 </html>
