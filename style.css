@@ -10,6 +10,7 @@ body {
   margin: 0;
   padding: 0;
   background-color: black;
+  color: #ffffff;
 }
 ul {
   padding: 0;
@@ -25,7 +26,6 @@ ul {
 
 header {
   position: fixed;
-  color: #ffffff;
   z-index: 998;
   top: 60px;
   max-width: 1280px;
@@ -49,6 +49,7 @@ header div nav ul {
 
 section.all {
   position: relative;
+  width: 100%;
   max-width: 1280px;
   margin: 0 0 80px 0;
 }
@@ -60,11 +61,13 @@ section.all {
   max-width: 1280px;
   z-index: 999;
   height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 .tadu svg {
   position: absolute;
   top: 0;
-  right: 0;
+  align-self: flex-end;
   width: 50%;
 }
 .main-imgs {
@@ -75,4 +78,86 @@ section.all {
 
 .main-imgs img {
   width: 100%;
+}
+
+footer {
+  position: fixed;
+  bottom: 20px;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  flex-direction: column;
+  align-items: center;
+  display: none;
+}
+
+.box-menu-mobile {
+  align-self: flex-start;
+}
+
+.box-menu-mobile .translate-mobile ul li {
+  display: inline;
+}
+
+.bt-menu-mobile {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+}
+
+.bt-menu-mobile .hamburguer-straps {
+  width: 27.15px;
+  height: 19.6px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.bt-menu-mobile .hamburguer-straps div {
+  width: 100%;
+  height: 2px;
+  background-color: white;
+}
+
+@media screen and (max-width: 1280px) {
+  header {
+    width: 95%;
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+  }
+  .main-imgs {
+    position: relative;
+    width: 77.5%;
+    margin-left: 2.5%;
+  }
+  .tadu svg {
+    margin-right: 2.5%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  header {
+    display: none;
+  }
+  .tadu svg {
+    width: 80% !important;
+    align-self: center;
+    margin: 0;
+  }
+  .main-imgs {
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+  footer {
+    display: flex;
+  }
+  footer .box-menu-mobile {
+    margin-left: 5%;
+  }
 }
