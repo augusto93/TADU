@@ -33,7 +33,7 @@ header {
   border: 1px solid #ffffff;
 }
 
-header div {
+header div.box-menu {
   position: relative;
   width: 40%;
   border: 1px solid blue;
@@ -42,7 +42,11 @@ header div {
   justify-content: space-between;
 }
 
-header div nav ul {
+header div.box-menu h2 {
+  display: none;
+}
+
+header div.box-menu nav ul {
   display: flex;
   flex-direction: row;
 }
@@ -51,7 +55,7 @@ section.all {
   position: relative;
   width: 100%;
   max-width: 1280px;
-  margin: 0 0 80px 0;
+  margin: 60px 0 80px 0;
 }
 
 .tadu {
@@ -78,6 +82,40 @@ section.all {
 
 .main-imgs img {
   width: 100%;
+}
+
+.title-mobile {
+  position: relative;
+  width: 100%;
+  flex-direction: row;
+  justify-content: center;
+  padding: 60px 0 0 0;
+  display: none;
+}
+
+.container-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-auto-rows: 774px;
+  grid-auto-flow: row;
+  grid-gap: 40px;
+  padding: 100px 0 0 0;
+}
+
+.box-gallery {
+  position: relative;
+  /* height: 100%; */
+  grid-column: span 1;
+}
+
+.box-gallery img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.box-gallery:nth-child(3n) {
+  grid-column: span 2;
 }
 
 footer {
@@ -124,24 +162,65 @@ footer {
   background-color: white;
 }
 
+/* GRID PROJETOS */
 @media screen and (max-width: 1280px) {
+  section.all {
+    width: 90%;
+    max-width: 1280px;
+    margin: 60px 5% 80px 5%;
+  }
+
   header {
-    width: 95%;
-    margin-left: 2.5%;
-    margin-right: 2.5%;
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
   }
-  .main-imgs {
-    position: relative;
-    width: 77.5%;
-    margin-left: 2.5%;
-  }
-  .tadu svg {
-    margin-right: 2.5%;
+  .container-gallery {
+    grid-gap: 5vw;
+    grid-auto-rows: 714px;
   }
 }
 
+@media screen and (max-width: 1024px) {
+  .container-gallery {
+    grid-auto-rows: 620px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .container-gallery {
+    grid-auto-rows: 464px;
+  }
+}
+
+@media screen and (max-width: 540px) {
+  .container-gallery {
+    grid-auto-rows: 326px;
+  }
+}
+
+@media screen and (max-width: 414px) {
+  .container-gallery {
+    grid-auto-rows: 250px;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .container-gallery {
+    grid-auto-rows: 225px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .container-gallery {
+    grid-auto-rows: 192px;
+  }
+}
+
+/* MOBILE */
 @media screen and (max-width: 500px) {
-  header {
+  header nav.menu,
+  header nav.translate {
     display: none;
   }
   .tadu svg {
@@ -153,6 +232,12 @@ footer {
     width: 90%;
     margin-left: 5%;
     margin-right: 5%;
+  }
+  .container-gallery {
+    padding: 60px 0 0 0;
+  }
+  .title-mobile {
+    display: flex;
   }
   footer {
     display: flex;

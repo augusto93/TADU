@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <link rel="stylesheet" href="style.css" />
+    <title>Projetos</title>
+    <style>
+      header div.box-menu h2 {
+        display: block !important;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+        <header>
+          <div class="box-menu">
+            <h2>
+              Tadu Arquitetura
+            </h2>
+            <nav class="menu">
+              <ul>
+                <li>About</li>
+                <li>Projects</li>
+                <li>Contact</li>
+              </ul>
+            </nav>
+            <nav class="translate">
+              <ul>
+                <li>PT</li>
+                <li>EN</li>
+              </ul>
+            </nav>
+          </div>
+        </header>
+        <section class="all">
+          <div class="title-mobile">
+            <h3>Projetos</h3>
+          </div>
+          <div class="container-gallery">
+            <div class="box-gallery">
+              <img :src="projeto.fotos[0].src" :alt="projeto.fotos[0].titulo" :title="projeto.fotos[0].titulo" />
+            </div>
+            <div class="box-gallery">
+              <img :src="projeto.fotos[0].src" :alt="projeto.fotos[0].titulo" :title="projeto.fotos[0].titulo" />
+            </div>
+            <div class="box-gallery">
+              <img :src="projeto.fotos[0].src" :alt="projeto.fotos[0].titulo" :title="projeto.fotos[0].titulo" />
+            </div>
+            <div class="box-gallery">
+              <img :src="projeto.fotos[0].src" :alt="projeto.fotos[0].titulo" :title="projeto.fotos[0].titulo" />
+            </div>
+          
+            <div class="box-gallery">
+              <img :src="projeto.fotos[0].src" :alt="projeto.fotos[0].titulo" :title="projeto.fotos[0].titulo" />
+            </div>
+            <div class="box-gallery">
+              <img :src="projeto.fotos[0].src" :alt="projeto.fotos[0].titulo" :title="projeto.fotos[0].titulo" />
+            </div>
+            <div class="box-gallery">
+              <img :src="projeto.fotos[0].src" :alt="projeto.fotos[0].titulo" :title="projeto.fotos[0].titulo" />
+            </div>
+            <!-- <div class="box-gallery">
+              <img :src="projeto.fotos[0].src" :alt="projeto.fotos[0].titulo" :title="projeto.fotos[0].titulo" />
+            </div>    -->
+          </div>
+        <!-- <div>
+          <img :src="projeto.fotos[0].src" :alt="projeto.fotos[0].titulo" />
+          {{projeto.nome}}
+          <br />
+          {{projeto.descricao}}
+        </div> -->
+        </section>
+    </div>
+    <script>
+      let divs = document.querySelectorAll('.container-gallery div'); 
+      let divsArr = Array.from(divs);
+      console.log(divsArr);
+      let lastDiv = divsArr.pop(); 
+      console.log(lastDiv);
+      let arraySize = divsArr.length;
+      console.log(arraySize);
+      let fixNumberArr = arraySize + 1;
+      console.log(fixNumberArr);
+      let fixNumberArr2 = fixNumberArr + 1;
+      console.log(fixNumberArr2);
+
+
+      if(fixNumberArr % 3 === 0 || (fixNumberArr2 % 3) === 0 ){
+        console.log('é múltiplo');
+      }else{
+        console.log('não é múltiplo')
+        lastDiv.style.gridColumn="span 2"
+      }
+      
+      
+      
+
+      
+
+      // divArr.forEach();
+    </script>
+    <script src="./produtounico.js"></script>
+  </body>
+</html>
