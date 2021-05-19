@@ -11,6 +11,7 @@ body {
   padding: 0;
   background-color: black;
   color: #ffffff;
+  font-family: "Courier New", Courier, monospace;
 }
 ul {
   padding: 0;
@@ -93,6 +94,12 @@ section.all {
   display: none;
 }
 
+.container-default {
+  position: relative;
+  padding: 100px 0 40px 0;
+}
+
+/* PROJETOS */
 .container-gallery {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -117,6 +124,44 @@ section.all {
 .box-gallery:nth-child(3n) {
   grid-column: span 2;
 }
+/* END PROJETOS */
+
+/* ABOUT */
+.subTitle-about {
+  margin-bottom: 80px;
+  font-size: 18px;
+  text-align: center;
+}
+
+.text-about {
+  margin-bottom: 50px;
+}
+
+.img-about {
+  font-size: 16px;
+  display: flex;
+  flex-direction: row;
+}
+
+.img-about img {
+  margin-right: 30px;
+}
+/* END ABOUT */
+
+/* CONTACT */
+.container-default {
+  position: relative;
+  padding: 100px 0 40px 0;
+}
+
+.info-contact {
+  margin: 0 0 40px 0;
+}
+.subTitle-contact {
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+/* END CONTACT */
 
 footer {
   position: fixed;
