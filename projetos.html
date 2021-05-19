@@ -72,27 +72,25 @@
         </section>
     </div>
     <script>
-      let divs = document.querySelectorAll('.container-gallery div'); 
-      let divsArr = Array.from(divs);
-      console.log(divsArr);
-      let lastDiv = divsArr.pop(); 
-      console.log(lastDiv);
-      let arraySize = divsArr.length;
-      console.log(arraySize);
-      let fixNumberArr = arraySize + 1;
-      console.log(fixNumberArr);
-      let fixNumberArr2 = fixNumberArr + 1;
-      console.log(fixNumberArr2);
 
+      function gridProjects (){
+        let divs = document.querySelectorAll('.container-gallery div'); 
+        let divsArr = Array.from(divs);
+        let lastDiv = divsArr.pop(); 
+        let arraySize = divsArr.length;
+        let fixNumberArr = arraySize + 1;
+        let fixNumberArr2 = fixNumberArr + 1;
 
-      if(fixNumberArr % 3 === 0 || (fixNumberArr2 % 3) === 0 ){
+        if(fixNumberArr % 3 === 0 || (fixNumberArr2 % 3) === 0 ){
         console.log('é múltiplo');
-      }else{
-        console.log('não é múltiplo')
-        lastDiv.style.gridColumn="span 2"
+        }else{
+          console.log('não é múltiplo')
+          lastDiv.style.gridColumn="span 2"
+        }
       }
       
-      // divArr.forEach();
+      gridProjects();
+
     </script>
     <script src="./produtounico.js"></script>
   </body>

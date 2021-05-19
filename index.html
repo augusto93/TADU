@@ -81,39 +81,27 @@
     </div>
 
     <script>
-      let userViewHeight = window.innerHeight;
-      let taduDiv = document.querySelector(".svg").clientHeight;
-      let heightadjust = userViewHeight - 80;
+      function taduSize() {
+        let userViewHeight = window.innerHeight;
+        let taduDiv = document.querySelector(".svg").clientHeight;
+        let heightadjust = userViewHeight - 80;
 
-      if (userViewHeight - 60 > taduDiv) {
-        console.log("Visualização da logo normal 50%");
-        document.querySelector(".svg").style.border = "none";
-        document.querySelector(".svg").style.width = "50%";
-      } else {
-        console.log("Tamanho da logo ajustado");
-        document.querySelector(".svg").style.border = "thick solid #FF0000";
-        document.querySelector(".svg").style.height = heightadjust;
-        document.querySelector(".svg").style.width = "initial";
+        if (userViewHeight - 60 > taduDiv) {
+          console.log("Visualização da logo normal 50%");
+          document.querySelector(".svg").style.border = "none";
+          document.querySelector(".svg").style.width = "50%";
+        } else {
+          console.log("Tamanho da logo ajustado");
+          document.querySelector(".svg").style.border = "thick solid #FF0000";
+          document.querySelector(".svg").style.height = heightadjust;
+          document.querySelector(".svg").style.width = "initial";
+        }
       }
 
+      taduSize();
+      
       window.addEventListener("resize", function () {
         window.location.reload()
-        // let userViewHeight = window.innerHeight;
-        // let taduDiv = document.querySelector(".svg").clientHeight;
-        // let heightadjust = userViewHeight - 80;
-
-        // if (userViewHeight - 60 < taduDiv) {
-        //   console.log("deu bom");
-        //   document.querySelector(".svg").style.border = "none";
-        //   document.querySelector(".svg").style.width = "50%";
-        // } else {
-        //   console.log("deu ruim");
-        //   document.querySelector(".svg").style.border = "thick solid #FF0000";
-        //   document.querySelector(".svg").style.height = heightadjust;
-        //   document.querySelector(".svg").style.width = "initial";
-        // }
-        // console.log(userViewHeight);
-        // console.log(taduDiv);
       });
     </script>
   </body>
