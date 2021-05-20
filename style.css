@@ -210,18 +210,33 @@ section.all {
   text-align: center;
 }
 
+.img-about-flex {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
 .text-about {
-  margin-bottom: 50px;
+  width: 100%;
+  max-width: 640px;
 }
 
 .img-about {
-  font-size: 16px;
+  width: 100%;
+  max-width: 420px;
+  margin-bottom: 50px;
+  font-size: 14px;
   display: flex;
   flex-direction: row;
-}
+  justify-content: space-around;
+  }
 
-.img-about img {
-  margin-right: 30px;
+.img-about div {
+  width: 100%;
+  max-width: 173px;
+  padding-left: 20px;
+  padding-right: 10px;
 }
 /* END ABOUT */
 
