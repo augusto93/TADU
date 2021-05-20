@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <link rel="stylesheet" href="style.css" />
+    <title>Projeto</title>
+    <style>
+      header div.box-menu h2 {
+        display: block !important;
+      }
+      header div.box-menu {
+        width:60% !important;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+        <header>
+          <div class="box-menu">
+            <h2>
+              Tadu Arquitetura
+            </h2>
+            <nav class="menu">
+              <ul>
+                <li>About</li>
+                <li>Projects</li>
+                <li>Contact</li>
+              </ul>
+            </nav>
+            <nav class="translate">
+              <ul>
+                <li>PT</li>
+                <li>EN</li>
+              </ul>
+            </nav>
+          </div>
+        </header>
+        <section class="all">
+          <div class="title-mobile">
+            <h3>Zereses</h3>
+          </div>
+          <div class="container-default">
+           <div class="main-img-project">
+              <img src="img.jpg" alt="">
+           </div>
+           <div class="about-project">
+             <div class="about-project-bl1">
+               <p>Descrição do projeto</p>
+             </div>
+             <div class="about-project-bl2">
+               <p>Outro bloco de descrição</p>
+             </div>
+           </div>
+           <div class="grid-imgs-project">
+              <div >
+                <img src="img.jpg" alt="">
+              </div>
+              <div style="grid-row: span 2;">
+                <img src="img.jpg" alt="">
+              </div>
+              <div>
+                <img src="img.jpg" alt="">
+              </div>
+              <div style="grid-column: span 2;">
+                <img src="img.jpg" alt="">
+              </div>
+           </div>
+           <div class="more-projects">
+            <div>
+              More projects
+            </div>
+            <div>
+              <img src="img.jpg" alt="">
+            </div>
+            <div>
+              <img src="img.jpg" alt="">
+            </div> 
+           </div>
+          </div>
+        </section>
+    </div>
+    <script src="./produtounico.js"></script>
+  </body>
+</html>
