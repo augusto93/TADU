@@ -220,6 +220,8 @@ section.all {
 .text-about {
   width: 100%;
   max-width: 640px;
+  margin-bottom: 200px;
+  margin-top: 80px;
 }
 
 .img-about {
