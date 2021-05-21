@@ -120,27 +120,28 @@
       </section>
 
       <footer>
-        <div class="box-menu-mobile">
-          <nav class="translate-mobile">
-            <ul>
-              <li>PT</li>
-              <li>EN</li>
-            </ul>
-          </nav>
-          <nav class="menu-mobile">
-            <ul>
-              <li>About</li>
-              <li>Projects</li>
-              <li>Contact</li>
-              <li>Insta</li>
-            </ul>
-          </nav>
-        </div>
-        <div class="bt-menu-mobile">
-          <div class="hamburguer-straps">
-            <div></div>
-            <div></div>
-            <div></div>
+        <transition name="fade">
+          <div v-if="show" class="box-menu-mobile">
+            <nav class="translate-mobile">
+              <ul>
+                <li>PT</li>
+                <li>EN</li>
+              </ul>
+            </nav>
+            <nav class="menu-mobile">
+              <ul>
+                <li>About</li>
+                <li>Projects</li>
+                <li>Contact</li>
+              </ul>
+            </nav>
+          </div>
+        </transition>
+        <div v-on:click="show = !show" class="bt-menu-mobile">
+          <div :class="{ classactive: show }" class="hamburguer-straps"  >
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
           </div>
         </div>
       </footer>

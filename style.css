@@ -81,7 +81,7 @@ section.all {
   width: 90%;
   max-width: 1280px;
   z-index: 999;
-  height: 100vh;
+  /* height: 100vh; */
   display: flex;
   flex-direction: column;
 }
@@ -232,7 +232,7 @@ section.all {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  }
+}
 
 .img-about div {
   width: 100%;
@@ -294,6 +294,7 @@ footer {
   justify-content: center;
   align-items: center;
   background-color: black;
+  cursor: pointer;
 }
 
 .bt-menu-mobile .hamburguer-straps {
@@ -308,6 +309,9 @@ footer {
   width: 100%;
   height: 2px;
   background-color: white;
+  -webkit-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 
 /* GRID PROJETOS */
@@ -400,3 +404,33 @@ footer {
     padding: 60px 0 0 0;
   }
 }
+
+/* ANIMAÇÕES */
+
+/* MENU MOBILE */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
+
+.hamburguer-straps.classactive .line:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburguer-straps.classactive .line:nth-child(1) {
+  -webkit-transform: translateY(9px) rotate(45deg);
+  -ms-transform: translateY(9px) rotate(45deg);
+  -o-transform: translateY(9px) rotate(45deg);
+  transform: translateY(9px) rotate(45deg);
+}
+
+.hamburguer-straps.classactive .line:nth-child(3) {
+  -webkit-transform: translateY(-9px) rotate(-45deg);
+  -ms-transform: translateY(-9px) rotate(-45deg);
+  -o-transform: translateY(-9px) rotate(-45deg);
+  transform: translateY(-9px) rotate(-45deg);
+}
+/*END MENU MOBILE */

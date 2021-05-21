@@ -1,7 +1,9 @@
 const vm = new Vue({
   el: "#app",
   data: {
-    projetos: []
+    projetos: [],
+    projeto: {},
+    show: false
   },
   methods: {
     fetchProjetos() {
@@ -10,9 +12,17 @@ const vm = new Vue({
       .then(r => {
         this.projetos = r;
       })
+    },
+    fetchProjeto() {
+      fetch("http://taduapilocal.local/wp-json/api/projeto/zereses/")
+      .then(r => r.json())
+      .then(r => {
+        this.projeto = r;
+      })
     }
   },
   created() {
     this.fetchProjetos();
+    this.fetchProjeto();
   }
 })
