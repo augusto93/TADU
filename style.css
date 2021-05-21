@@ -60,6 +60,21 @@ header div.box-menu nav ul {
   font-size: 18px;
 }
 
+header div.box-menu nav ul li {
+  display: inline-block;
+}
+header div.box-menu nav ul li::after {
+  content: "";
+  display: block;
+  width: 0;
+  height: 2px;
+  background: #ffffff;
+  transition: width 0.3s;
+}
+header div.box-menu nav ul li:hover::after {
+  width: 100%;
+}
+
 header div.box-menu nav.menu ul li:nth-child(2) {
   padding: 0 2.5vw 0 2.5vw;
 }
