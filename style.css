@@ -62,6 +62,7 @@ header div.box-menu nav ul {
 
 header div.box-menu nav ul li {
   display: inline-block;
+  cursor: pointer;
 }
 header div.box-menu nav ul li::after {
   content: "";
@@ -164,6 +165,8 @@ section.all {
 .main-img-project {
   position: relative;
   width: 100%;
+  padding: 0 0 40px 0;
+  margin: 0 0 -7px 0;
 }
 .main-img-project img {
   width: 100%;
@@ -173,7 +176,7 @@ section.all {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding: 40px 0 40px 0;
+  padding: 0 0 40px 0;
 }
 .about-project .about-project-bl1 {
   width: 50%;
@@ -215,6 +218,46 @@ section.all {
 
 .more-projects div img {
   width: 100%;
+}
+
+.container-button-about-project {
+  width: 100%;
+  display: none;
+  flex-direction: row;
+  justify-content: center;
+  padding: 20px 0 40px 0;
+}
+.button-about-project {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: #000000;
+  cursor: pointer;
+}
+.plus-straps {
+  width: 27.15px;
+  height: 27.15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.plus-straps div {
+  width: 100%;
+  height: 2px;
+  background-color: white;
+  -webkit-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+.plus-straps div:nth-child(1) {
+  transform: translateY(1px) rotate(90deg);
+}
+.plus-straps div:nth-child(2) {
+  transform: translateY(-1px);
 }
 /* END PROJETO */
 
@@ -371,8 +414,20 @@ footer {
 }
 
 @media screen and (max-width: 768px) {
+  .container-default {
+    padding: 0 0 0 0;
+  }
   .container-gallery {
     grid-auto-rows: 464px;
+  }
+  .main-img-project {
+    padding: 0 0 3vw 0;
+  }
+  .about-project {
+    display: none;
+  }
+  .container-button-about-project {
+    display: flex;
   }
 }
 
