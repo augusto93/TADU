@@ -3,7 +3,8 @@ const vm = new Vue({
   data: {
     projetos: [],
     projeto: {},
-    show: false
+    show: false,
+    showAbout: false
   },
   methods: {
     fetchProjetos() {
