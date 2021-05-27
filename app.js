@@ -6,6 +6,13 @@ const vm = new Vue({
     show: false,
     showAbout: false
   },
+  created() {
+    this.fetchProjetos();
+    this.fetchProjeto();
+  },
+  mounted() {
+    
+  },
   methods: {
     fetchProjetos() {
       fetch("http://taduapilocal.local/wp-json/api/projeto")
@@ -22,8 +29,5 @@ const vm = new Vue({
       })
     }
   },
-  created() {
-    this.fetchProjetos();
-    this.fetchProjeto();
-  }
+ 
 })

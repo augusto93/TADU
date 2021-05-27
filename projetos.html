@@ -37,6 +37,9 @@
               </ul>
             </nav>
           </div>
+          <div class="title-mobile">
+            <h3>Projetos</h3>
+          </div>
         </header>
         <div v-if="show" class="tadu">
           <!-- <svg class="svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 59.7 72.7">
@@ -59,9 +62,7 @@
           </svg>
           
         </div>
-        <div class="title-mobile">
-          <h3>Projetos</h3>
-        </div>
+        
         <section class="all">
           
           <div class="container-gallery">
@@ -126,7 +127,7 @@
     </div>
     <script>
 
-      function gridProjects (){
+      function gridProjects() {
         let divs = document.querySelectorAll('.container-gallery div'); 
         let divsArr = Array.from(divs);
         let lastDiv = divsArr.pop(); 
@@ -141,9 +142,18 @@
           lastDiv.style.gridColumn="span 2"
         }
       }
-      
       gridProjects();
 
+
+      // const imgs = document.querySelectorAll('.box-gallery');
+  
+      //   imgs.forEach((item) => {
+      //     item.addEventListener('mouseover', onMouseOver);
+      //   })
+        
+      //   function onMouseOver(event) {
+      //     console.log(event);
+      //   }
     </script>
     <script src="./app.js"></script>
   </body>

@@ -37,7 +37,18 @@
               </ul>
             </nav>
           </div>
+          <div class="title-mobile">
+            <h3>Zereses</h3>
+          </div>      
         </header>
+        <div :class="{ buttonaboutprojectactive: showAbout }" class="container-button-about-project">
+          <div  v-on:click="showAbout = !showAbout" class="button-about-project" >
+            <div :class="{ classactiveabout: showAbout }" class="plus-straps">
+              <div></div>
+              <div></div>
+            </div>
+          </div>
+        </div>
         <div v-if="show" class="tadu">
           <!-- <svg class="svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 59.7 72.7">
             <path
@@ -59,23 +70,12 @@
           </svg>
           
         </div>
-        <div class="title-mobile">
-          <h3>Zereses</h3>
-        </div>
-        <div :class="{ buttonaboutprojectactive: showAbout }" class="container-button-about-project">
-          <div  v-on:click="showAbout = !showAbout" class="button-about-project" >
-            <div :class="{ classactiveabout: showAbout }" class="plus-straps">
-              <div></div>
-              <div></div>
-            </div>
-          </div>
-        </div>
         <section class="all">
           <div class="container-gallery2">
            <div class="main-img-project">
               <img src="img.jpg" alt="">
            </div>
-           <div class="about-project" :class="{ aboutprojectactive: showAbout }">
+           <div class="about-project">
              <div class="about-project-bl1">
                <p>Opened a store in a relatively small space at Gávea
                 Rio de Janeiro. Our idea was to design a high-density
@@ -143,20 +143,25 @@
             </div>
           </div>
         </transition>
-
-        <!-- <div class="box-about-project">
-          <div class="about-project-bl1">
-            <p>Opened a store in a relatively small space at Gávea
-             Rio de Janeiro. Our idea was to design a high-density
-             store in a small space.</p>
+        
+        <transition name="fade">
+        <div v-if="showAbout" class="box-about-project" >
+          <div class="about-project-blcont">
+            <div class="about-project-bl1-mob">
+              <p>Opened a store in a relatively small space at Gávea
+                Rio de Janeiro. Our idea was to design a high-density
+                store in a small space.</p>
+            </div>
+            <div class="about-project-bl2-mob">
+              <p>Floor: 1<br />
+                Floor area : 77.25 m²<br />
+                Structure : SRC (CFT), RC<br />
+                Completion: 03/2020
+              </p>
+            </div>
           </div>
-          <div class="about-project-bl2">
-            <p>Floor: 1<br />
-             Floor area : 77.25 m²<br />
-             Structure : SRC (CFT), RC<br />
-             Completion: 03/2020</p>
-          </div>
-        </div> -->
+        </div> 
+       </transition>
 
     </div>
     <script src="./app.js"></script>

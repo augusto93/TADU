@@ -126,7 +126,7 @@ section.all {
   width: 100%;
   flex-direction: row;
   justify-content: center;
-  padding: 120px 0 0 0;
+  padding: 20px 0 0 0;
   display: none;
 }
 
@@ -193,6 +193,17 @@ section.all {
 .about-project .about-project-bl2 {
   width: 30%;
 }
+
+.about-project-blcont {
+  position: relative;
+  width: 90%;
+  margin: 200px 5% 0 5%;
+}
+
+.about-project-bl1-mob {
+  padding: 0 0 20px 0;
+}
+
 .grid-imgs-project {
   position: relative;
   display: grid;
@@ -234,15 +245,18 @@ section.all {
   display: none;
   flex-direction: row;
   justify-content: center;
-  padding: 20px 0 0 0;
-  margin: 0 0 -40px 0;
+  top: 0;
+  padding: 0;
+  position: fixed;
+  padding: 120px 0 0 0;
+  z-index: 99;
 }
-.buttonaboutprojectactive {
+/* .buttonaboutprojectactive {
   width: 90%;
   flex-direction: row;
   justify-content: center;
   padding: 0;
-}
+} */
 .button-about-project {
   width: 50px;
   height: 50px;
@@ -325,10 +339,6 @@ section.all {
 /* END ABOUT */
 
 /* CONTACT */
-.container-default {
-  position: relative;
-  padding: 0 0 40px 0;
-}
 
 .info-contact {
   margin: 0 0 40px 0;
@@ -409,6 +419,7 @@ footer {
     width: 90%;
     margin-left: 5%;
     margin-right: 5%;
+    top: 40px;
   }
   .container-gallery {
     grid-gap: 5vw;
@@ -439,12 +450,12 @@ footer {
   .container-button-about-project {
     display: flex;
   }
-  .buttonaboutprojectactive {
+  /* .buttonaboutprojectactive {
     position: fixed;
     bottom: 30px;
     z-index: 999;
-  }
-  .aboutprojectactive {
+  } */
+  /* .aboutprojectactive {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -461,9 +472,9 @@ footer {
   .aboutprojectactive .about-project-bl2 {
     width: 100%;
     padding: 0 0 40px 0;
-  }
+  } */
   .container-gallery2 {
-    padding: 0 0 40px 0;
+    padding: 140px 0 40px 0;
   }
   footer {
     display: flex;
@@ -485,6 +496,10 @@ footer {
 @media screen and (max-width: 540px) {
   .container-gallery {
     grid-auto-rows: 326px;
+  }
+  .img-about img,
+  .img-about div {
+    width: 50%;
   }
 }
 
@@ -523,7 +538,7 @@ footer {
     margin-right: 5%;
   }
   .container-gallery {
-    padding: 60px 0 0 0;
+    padding: 100px 0 0 0;
   }
 }
 
@@ -571,12 +586,13 @@ footer {
 .box-about-project {
   position: fixed;
   width: 100%;
-  height: 100.5%;
+  height: 100%;
   background-color: rgba(0, 0, 0, 0.9);
-  z-index: 97;
-  top: 240px;
+  z-index: 95;
+  top: 0;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  overflow-y: scroll;
 }
 
 .st0 {
