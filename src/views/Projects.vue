@@ -1,14 +1,19 @@
 <template>
   <div class="projects">
-    <h1>Projetos</h1>
+    <transition name="fade">
+    <TaduSvg v-if="expShowMenu" ></TaduSvg>
+    </transition>
   </div>
 </template>
 
 <script>
+import TaduSvg from '@/components/TaduSvg.vue'
 
 export default {
   name: 'Projects',
-  props: ['project']
-
+  props: ['project', 'expShowMenu'],
+  components: {
+    TaduSvg
+  }
 }
 </script>

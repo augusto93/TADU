@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <header>
-      <div class="box-menu">
+      <div v-if="showHome"  class="box-menu">
         <h2>
           Tadu Arquitetura
         </h2>
@@ -19,19 +19,72 @@
           </ul>
         </nav>
       </div>
+      <div v-if="showHome"  class="title-mobile">
+        <h3>{{$route.name }}</h3>
+      </div>  
     </header>
-    <router-view/>
+    <router-view :expShowMenu="showMenu"></router-view>
     <footer>
-      <div v-on:click="show = !show" class="bt-menu-mobile">
-        <div :class="{ classactive: show }" class="hamburguer-straps"  >
+      <div v-on:click="showMenu = !showMenu" class="bt-menu-mobile">
+        <div :class="{ classactive: showMenu }" class="hamburguer-straps"  >
           <div class="line"></div>
           <div class="line"></div>
           <div class="line"></div>
         </div>
       </div>
     </footer>
+    <transition name="fade">
+      <div v-if="showMenu"  class="menu-mobile-full">
+        <div class="box-menu-mobile">
+          <nav class="translate-mobile">
+            <ul>
+              <li>PT</li>
+              <li>EN</li>
+            </ul>
+          </nav>
+          <nav class="menu-mobile">
+            <ul>
+              <li v-on:click="showMenu = !showMenu"><router-link to="/about">About</router-link></li>
+              <li v-on:click="showMenu = !showMenu"><router-link to="/projects">Projects</router-link></li>
+              <li v-on:click="showMenu=  !showMenu"><router-link to="/Contact">Contact</router-link></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </transition>
   </div>
 </template>
+
+<script>
+// @ is an alias to /src
+// import TaduSvg from '@/components/TaduSvg.vue'
+
+export default {
+  name: 'App',
+  data() {
+    return {
+      showMenu: false,
+      showHome:true,
+    }
+  },
+  watch: {
+    '$route.path': 'checkPath',
+  },
+  created() {
+    this.checkPath()
+  },
+  methods: {
+    checkPath: function() { 
+      let route = this.$route.path
+      if (route === '/') {
+        this.showHome = false
+      } else {
+        this.showHome = true
+      }
+    }
+  }
+}
+</script>
 
 <style lang="scss">
   * {
@@ -177,5 +230,231 @@
 .container-default {
   position: relative;
   padding: 100px 0 40px 0;
+}
+footer {
+  position: fixed;
+  bottom: 30px;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  flex-direction: column;
+  align-items: center;
+  display: none;
+  z-index: 99;
+}
+
+.box-menu-mobile {
+  align-self: flex-end;
+}
+
+.box-menu-mobile .menu-mobile ul li {
+  font-size: 1.365rem;
+}
+
+.box-menu-mobile .translate-mobile {
+  margin: 0 0 10px 0;
+}
+
+.box-menu-mobile .translate-mobile ul li {
+  display: inline;
+  font-size: 0.875rem;
+}
+
+.bt-menu-mobile {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+  cursor: pointer;
+}
+
+.bt-menu-mobile .hamburguer-straps {
+  width: 27.15px;
+  height: 19.6px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.bt-menu-mobile .hamburguer-straps div {
+  width: 100%;
+  height: 2px;
+  background-color: white;
+  -webkit-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+@media screen and (max-width: 1280px) {
+  section.all {
+    width: 90%;
+    max-width: 1280px;
+    margin: 60px 5% 80px 5%;
+  }
+
+  header {
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+    top: 40px;
+  }
+  .container-gallery {
+    grid-gap: 5vw;
+    grid-auto-rows: 714px;
+  }
+  .grid-imgs-project {
+    grid-gap: 3vw;
+  }
+}
+@media screen and (max-width: 1024px) {
+  header nav.menu,
+  header nav.translate {
+    display: none;
+  }
+  .container-gallery {
+    grid-auto-rows: 620px;
+  }
+  .title-mobile {
+    display: flex;
+  }
+  .main-img-project {
+    padding: 0 0 3vw 0;
+  }
+  .about-project {
+    display: none;
+  }
+  .container-button-about-project {
+    display: flex;
+  }
+  .container-gallery2 {
+    padding: 140px 0 40px 0;
+  }
+  footer {
+    display: flex;
+  }
+  .box-menu-mobile {
+    margin: 0 0 100px 10%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .container-default {
+    /* padding: 0 0 0 0; */
+  }
+  .container-gallery {
+    grid-auto-rows: 464px;
+  }
+}
+
+@media screen and (max-width: 540px) {
+  .container-gallery {
+    grid-auto-rows: 326px;
+  }
+  .img-about img,
+  .img-about div {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 414px) {
+  .container-gallery {
+    grid-auto-rows: 250px;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .container-gallery {
+    grid-auto-rows: 225px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .container-gallery {
+    grid-auto-rows: 192px;
+  }
+}
+
+/* MOBILE */
+@media screen and (max-width: 500px) {
+  .tadu {
+    top: 40px;
+    margin: 0 5% 0 5%;
+  }
+  .tadu svg {
+    width: 90% !important;
+    align-self: center;
+    margin: 0;
+  }
+  .main-imgs {
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+  .container-gallery {
+    padding: 100px 0 0 0;
+  }
+}
+/* ANIMAÇÕES */
+
+/* MENU MOBILE */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
+
+.hamburguer-straps.classactive .line:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburguer-straps.classactive .line:nth-child(1) {
+  -webkit-transform: translateY(9px) rotate(45deg);
+  -ms-transform: translateY(9px) rotate(45deg);
+  -o-transform: translateY(9px) rotate(45deg);
+  transform: translateY(9px) rotate(45deg);
+}
+
+.hamburguer-straps.classactive .line:nth-child(3) {
+  -webkit-transform: translateY(-9px) rotate(-45deg);
+  -ms-transform: translateY(-9px) rotate(-45deg);
+  -o-transform: translateY(-9px) rotate(-45deg);
+  transform: translateY(-9px) rotate(-45deg);
+}
+/*END MENU MOBILE */
+
+.menu-mobile-full {
+  position: fixed;
+  width: 100%;
+  height: 100.5%;
+  background-color: rgba(0, 0, 0, 0.9);
+  z-index: 97;
+  top: 0;
+  display: flex;
+  flex-direction: row;
+}
+
+.box-about-project {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  z-index: 95;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+}
+
+header div.box-menu h2 {
+display: block !important;
+}
+header div.box-menu {
+  width:60% !important;
 }
 </style>
