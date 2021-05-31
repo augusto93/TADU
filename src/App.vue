@@ -20,7 +20,7 @@
         </nav>
       </div>
       <div v-if="showHome"  class="title-mobile">
-        <h3>{{$route.name }}</h3>
+        <h3>{{ $route.name }}</h3>
       </div>  
     </header>
     <router-view :expShowMenu="showMenu"></router-view>
@@ -85,6 +85,10 @@ export default {
         this.showHome = false
       } else {
         this.showHome = true
+      }
+      let stateMenuHome = this.showMenu
+      if(stateMenuHome === true & route === '/'){
+        this.showMenu = !this.showMenu
       }
     }
   }
@@ -320,6 +324,146 @@ footer {
   grid-column: span 2;
 }
 /* END PROJETOS */
+/* PROJETO */
+.container-gallery2 {
+  position: relative;
+  padding: 100px 0 40px 0;
+}
+.main-img-project {
+  position: relative;
+  width: 100%;
+  padding: 0 0 40px 0;
+  margin: 0 0 -7px 0;
+}
+.main-img-project img {
+  width: 100%;
+}
+.about-project {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0 0 40px 0;
+}
+.about-project .about-project-bl1 {
+  width: 50%;
+}
+.about-project .about-project-bl2 {
+  width: 30%;
+}
+
+.about-project-blcont {
+  position: relative;
+  width: 90%;
+  margin: 200px 5% 0 5%;
+}
+
+.about-project-bl1-mob {
+  padding: 0 0 20px 0;
+}
+
+.grid-imgs-project {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 40px;
+}
+.grid-imgs-project div {
+  grid-column: span 1;
+}
+
+.grid-imgs-project div:nth-child(2){
+  grid-row: span 2;
+}
+
+.grid-imgs-project div:nth-child(4){
+  grid-column: span 2;
+}
+
+.grid-imgs-project div img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.more-projects {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  padding: 100px 0 0 0;
+}
+
+.more-projects div {
+  width: 32%;
+}
+
+.more-projects div:nth-child(2) {
+  padding: 0 2% 0 2%;
+}
+
+.more-projects div img {
+  width: 100%;
+}
+
+.container-button-about-project {
+  width: 100%;
+  display: none;
+  flex-direction: row;
+  justify-content: center;
+  top: 0;
+  padding: 0;
+  position: fixed;
+  padding: 120px 0 0 0;
+  z-index: 96;
+}
+/* .buttonaboutprojectactive {
+  width: 90%;
+  flex-direction: row;
+  justify-content: center;
+  padding: 0;
+} */
+.button-about-project {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: #000000;
+  cursor: pointer;
+}
+.plus-straps {
+  width: 27.15px;
+  height: 27.15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.plus-straps div {
+  width: 100%;
+  height: 2px;
+  background-color: white;
+  -webkit-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+.plus-straps div:nth-child(1) {
+  transform: translateY(1px) rotate(90deg);
+}
+.plus-straps div:nth-child(2) {
+  transform: translateY(-1px);
+}
+
+.plus-straps.classactiveabout div:nth-child(1) {
+  transform: translateY(1px) rotate(135deg);
+}
+.plus-straps.classactiveabout div:nth-child(2) {
+  transform: translateY(-1px) rotate(-135deg);
+}
+
+/* END PROJETO */
 
 @media screen and (max-width: 1280px) {
   section.all {

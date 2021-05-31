@@ -29,7 +29,7 @@ export default {
     }
   },
   created() {
-    this.fetchProjetos();
+    this.fetchProjetos("/projeto");
   },
   mounted() {
     this.taduSize();

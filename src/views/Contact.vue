@@ -1,7 +1,7 @@
 <template>
   <div class="contact">
     <transition name="fade">
-    <TaduSvg v-if="expShowMenu" ></TaduSvg>
+    <router-link to="/"><TaduSvg v-if="expShowMenu" ></TaduSvg></router-link>
     </transition>
     <section class="all">        
       <div class="container-default">

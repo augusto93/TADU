@@ -1,12 +1,12 @@
 <template>
   <div class="projects">
     <transition name="fade">
-    <TaduSvg v-if="expShowMenu" ></TaduSvg>
+    <router-link to="/"><TaduSvg v-if="expShowMenu" ></TaduSvg></router-link>
     </transition>
     <section class="all">
       <div class="container-gallery">
         <div v-for="projetos in projetos" :key="projetos.id" class="box-gallery">
-          <img :src="projetos.fotos[0].src" />
+          <router-link :to="{name: 'Project', params:{project: projetos.id}}"><img :src="projetos.fotos[0].src" /></router-link>
         </div>
       </div>
     </section>
@@ -27,14 +27,14 @@ export default {
     }
   },
   created() {
-    this.fetchProjetos();
+    this.fetchProjetos("/projeto");
   },
   mounted() {
-    
+    // setTimeout(this.gridProjects, 500);
   },
   updated() {
-  this.$nextTick(() => {
-      this.gridProjects()
+    this.$nextTick(() => {
+        this.gridProjects()
     })
   },
   methods: {
