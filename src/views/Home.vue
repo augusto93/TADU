@@ -4,7 +4,7 @@
     <section class="all">
       <div class="main-imgs">
         <ul>
-          <li v-for="projetos in projetos" :key="projetos">
+          <li v-for="projetos in projetos" :key="projetos.id">
             <img :src="projetos.fotos[0].src" />
             <span style="color: #ffffff">{{projetos.nome}}</span>
           </li>
@@ -17,14 +17,14 @@
 <script>
 // @ is an alias to /src
 import TaduSvg from '@/components/TaduSvg.vue'
-
+import fetchData from '@/mixins/fetchData.js'
 
 export default {
   name: 'Home',
   props:['expShowMenu'],
+  mixins: [fetchData],
   data() {
     return {
-      projetos: [],
       showAbout: false
     }
   },
@@ -38,13 +38,6 @@ export default {
       });
   },
   methods: {
-    fetchProjetos() {
-      fetch("http://taduapilocal.local/wp-json/api/projeto")
-      .then(r => r.json())
-      .then(r => {
-        this.projetos = r;
-      })
-    },
     taduSize() {
       let userViewHeight = window.innerHeight;
       let taduDiv = document.querySelector(".svg").clientHeight

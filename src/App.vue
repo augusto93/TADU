@@ -1,9 +1,9 @@
 <template>
   <div id="app">
     <header>
-      <div v-if="showHome"  class="box-menu">
-        <h2>
-          Tadu Arquitetura
+      <div class="box-menu">
+        <h2 v-if="showHome">
+          <router-link to="/">Tadu Arquitetura</router-link>
         </h2>
         <nav class="menu">
           <ul>
@@ -58,7 +58,8 @@
 <script>
 // @ is an alias to /src
 // import TaduSvg from '@/components/TaduSvg.vue'
-
+// import { mapState, mapMutations } from "vuex"
+ 
 export default {
   name: 'App',
   data() {
@@ -70,10 +71,14 @@ export default {
   watch: {
     '$route.path': 'checkPath',
   },
+  computed: {
+    // ...mapState(["showMenuVuex"])
+  },
   created() {
     this.checkPath()
   },
   methods: {
+    // ...mapMutations(['CHANGE_MENU']),
     checkPath: function() { 
       let route = this.$route.path
       if (route === '/') {
@@ -288,6 +293,33 @@ footer {
   -o-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
 }
+
+/* PROJETOS */
+.container-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-auto-rows: 774px;
+  grid-auto-flow: row;
+  grid-gap: 40px;
+  padding: 100px 0 0 0;
+}
+
+.box-gallery {
+  position: relative;
+  /* height: 100%; */
+  grid-column: span 1;
+}
+
+.box-gallery img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.box-gallery:nth-child(3n) {
+  grid-column: span 2;
+}
+/* END PROJETOS */
 
 @media screen and (max-width: 1280px) {
   section.all {
