@@ -6,7 +6,7 @@
     <section class="all">
       <div class="container-gallery">
         <div v-for="projetos in projetos" :key="projetos.id" class="box-gallery">
-          <router-link :to="{name: 'Project', params:{project: projetos.id}}"><img :src="projetos.fotos[0].src" /></router-link>
+          <router-link :to="{name: 'Project', params:{project: projetos.id}}"><img :src="projetos.fotocapa" /></router-link>
         </div>
       </div>
     </section>

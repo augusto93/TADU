@@ -214,7 +214,11 @@ export default {
   position: relative;
   width: 80%;
   margin-top: 110vh;
-}
+  }
+
+  .main-imgs ul li {
+  margin:0 0 40px 0;
+  }
 
 .main-imgs img {
   width: 100%;
@@ -484,6 +488,9 @@ footer {
   }
   .grid-imgs-project {
     grid-gap: 3vw;
+  }
+  .main-imgs ul li {
+  margin:0 0 3vw 0;
   }
 }
 @media screen and (max-width: 1024px) {

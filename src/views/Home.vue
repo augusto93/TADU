@@ -5,8 +5,7 @@
       <div class="main-imgs">
         <ul>
           <li v-for="projetos in projetos" :key="projetos.id">
-            <img :src="projetos.fotos[0].src" />
-            <span style="color: #ffffff">{{projetos.nome}}</span>
+            <img :src="projetos.fotocapa" />
           </li>
         </ul>
       </div>
