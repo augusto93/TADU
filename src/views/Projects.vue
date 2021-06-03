@@ -1,8 +1,8 @@
 <template>
   <div class="projects">
-    <transition name="fade">
+    
     <router-link to="/"><TaduSvg v-if="expShowMenu" ></TaduSvg></router-link>
-    </transition>
+    
     <section class="all">
       <div class="container-gallery">
         <div v-for="projetos in projetos" :key="projetos.id" class="box-gallery">
@@ -31,6 +31,14 @@ export default {
   },
   mounted() {
     // setTimeout(this.gridProjects, 500);
+    this.tlPageIn = this.$gsap.timeline()
+    this.tlPageIn
+      .from('.container-gallery', { 
+        opacity: 0,
+        y:-500, 
+        duration: .8, 
+        ease: 'power2.out' 
+        })
   },
   updated() {
     this.$nextTick(() => {

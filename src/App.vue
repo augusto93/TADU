@@ -2,10 +2,13 @@
   <div id="app">
     <header>
       <div class="box-menu">
-        <h2 v-if="showHome">
-          <router-link to="/">Tadu Arquitetura</router-link>
-        </h2>
+        
         <nav class="menu">
+          <div v-if="showHome" id="taduArq" class="taduarq" :class="{ taduarqani: showTaduArq }">
+            <h2>
+              <router-link to="/">Tadu Arquitetura</router-link>
+            </h2>
+          </div>
           <ul>
             <li><router-link to="/about">About</router-link></li>
             <li><router-link to="/projects">Projects</router-link></li>
@@ -34,7 +37,7 @@
       </div>
     </footer>
     <transition name="fade">
-      <div v-if="showMenu"  class="menu-mobile-full">
+    <div v-if="showMenu"  class="menu-mobile-full">
         <div class="box-menu-mobile">
           <nav class="translate-mobile">
             <ul>
@@ -50,7 +53,7 @@
             </ul>
           </nav>
         </div>
-      </div>
+    </div>
     </transition>
   </div>
 </template>
@@ -66,6 +69,7 @@ export default {
     return {
       showMenu: false,
       showHome:true,
+      showTaduArq: false,
     }
   },
   watch: {
@@ -77,6 +81,9 @@ export default {
   created() {
     this.checkPath()
   },
+  mounted() {
+    
+  },
   methods: {
     // ...mapMutations(['CHANGE_MENU']),
     checkPath: function() { 
@@ -85,6 +92,11 @@ export default {
         this.showHome = false
       } else {
         this.showHome = true
+        this.tlTDmenu = this.$gsap.timeline()
+        this.tlTDmenu.call(function() {
+          var taduarq = document.getElementById("taduArq");
+          taduarq.classList.add("taduarqani");
+        });
       }
       let stateMenuHome = this.showMenu
       if(stateMenuHome === true & route === '/'){
@@ -157,11 +169,40 @@ export default {
     font-size: 1rem;
   }
 
+  header div.box-menu nav{
+    display:flex;
+    flex-direction:row;
+  }
+
+
+  header div.box-menu nav.menu ul{
+    padding:0 3.5vw 0 0;
+  }
+
+  .taduarq {
+    transition: all 0.5s ease-out;
+    overflow: hidden;
+    opacity: 0;
+    flex:0;
+    margin:0 0 0 0;
+  }
+
+  .taduarqani {
+    flex:1;
+    opacity: 1;
+    margin:0 150px 0 0;
+  }
+
+  .taduarq h2{
+    width:157px;
+  }
+
   header div.box-menu nav ul {
     display: flex;
     flex-direction: row;
     /* font-size: 18px; */
   }
+  
 
   header div.box-menu nav ul li {
     display: inline-block;
@@ -494,8 +535,7 @@ footer {
   }
 }
 @media screen and (max-width: 1024px) {
-  header nav.menu,
-  header nav.translate {
+  header div.box-menu nav {
     display: none;
   }
   .container-gallery {
@@ -640,4 +680,5 @@ display: block !important;
 header div.box-menu {
   width:60% !important;
 }
+
 </style>

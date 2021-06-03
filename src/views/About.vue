@@ -1,8 +1,8 @@
 <template>
   <div class="about">
-    <transition name="fade">
+    
     <router-link to="/"><TaduSvg v-if="expShowMenu" ></TaduSvg></router-link>
-    </transition>
+    
     <section class="all">     
         <div class="container-default">
           <div class="text-about">

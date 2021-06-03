@@ -5,7 +5,7 @@
       <div class="main-imgs">
         <ul>
           <li v-for="projetos in projetos" :key="projetos.id">
-            <img :src="projetos.fotocapa" />
+            <router-link :to="{name: 'Project', params:{project: projetos.id}}"><img :src="projetos.fotocapa" /></router-link>
           </li>
         </ul>
       </div>
@@ -52,6 +52,24 @@ export default {
         document.querySelector(".svg").style.width = "initial";
       }
     }
+  },
+   beforeRouteLeave(to, from, next) {
+    this.tlPageOut = this.$gsap.timeline()
+    this.tlPageOut.to('.main-imgs', {
+      opacity: 0,
+      ease: 'power1.in',
+      y: 300,
+      duration: 0.3
+    })
+    .to('.tadu', {
+      opacity: 0,
+      ease: 'power1.in',
+      y: -100,
+      duration: 0.3,
+        onComplete: () => {
+          next()
+        },
+    },"<")
   },  
   components: {
     TaduSvg

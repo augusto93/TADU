@@ -8,9 +8,9 @@
         </div>
       </div>
     </div>
-    <transition name="fade">
+    
     <router-link to="/"><TaduSvg v-if="expShowMenu" ></TaduSvg></router-link>
-    </transition>
+    
     <!-- <h1>{{ projetos}}</h1> -->
     <section class="all">
       <div class="container-gallery2">
