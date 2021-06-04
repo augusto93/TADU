@@ -2,7 +2,9 @@
   <div class="projects">
     
     <router-link to="/"><TaduSvg v-if="expShowMenu" ></TaduSvg></router-link>
-    
+    <div class="title-mobile">
+      <h3>{{ $route.name }}</h3>
+    </div>
     <section class="all">
       <div class="container-gallery">
         <div v-for="projetos in projetos" :key="projetos.id" class="box-gallery">
@@ -35,7 +37,7 @@ export default {
     this.tlPageIn
       .from('.container-gallery', { 
         opacity: 0,
-        y:-500, 
+        y:-300, 
         duration: .8, 
         ease: 'power2.out' 
         })
@@ -63,6 +65,18 @@ export default {
       }
     }
   },
+  beforeRouteLeave(to, from, next) {
+    this.tlPageOut = this.$gsap.timeline()
+    this.tlPageOut.to('.container-gallery', {
+      opacity: 0,
+      y:300, 
+      duration: .3, 
+      ease: 'power1.in',
+      onComplete: () => {
+        next()
+      }, 
+    }) 
+  },  
   components: {
     TaduSvg
   }

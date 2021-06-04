@@ -35,6 +35,14 @@ export default {
      window.addEventListener("resize", function () {
         window.location.reload()
       });
+    this.tlPageIn = this.$gsap.timeline()
+    this.tlPageIn
+      .from('.tadu', { 
+        opacity: 0,
+        y:-100, 
+        duration: .8, 
+        ease: 'power2.out' 
+      })  
   },
   methods: {
     taduSize() {
@@ -53,7 +61,7 @@ export default {
       }
     }
   },
-   beforeRouteLeave(to, from, next) {
+  beforeRouteLeave(to, from, next) {
     this.tlPageOut = this.$gsap.timeline()
     this.tlPageOut.to('.main-imgs', {
       opacity: 0,

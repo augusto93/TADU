@@ -2,7 +2,9 @@
   <div class="contact">
     
     <router-link to="/"><TaduSvg v-if="expShowMenu" ></TaduSvg></router-link>
-    
+    <div class="title-mobile">
+      <h3>{{ $route.name }}</h3>
+    </div>
     <section class="all">        
       <div class="container-default">
         <div class="info-contact">
@@ -88,6 +90,28 @@ import TaduSvg from '@/components/TaduSvg.vue'
 export default {
   name: 'Contact',
   props:['expShowMenu'],
+  mounted() {
+    this.tlPageIn = this.$gsap.timeline()
+    this.tlPageIn
+      .from('.container-default', { 
+        opacity: 0,
+        y:-300, 
+        duration: .8, 
+        ease: 'power2.out' 
+      })
+  },
+   beforeRouteLeave(to, from, next) {
+    this.tlPageOut = this.$gsap.timeline()
+    this.tlPageOut.to('.container-default', {
+      opacity: 0,
+      y:300, 
+      duration: .3, 
+      ease: 'power1.in',
+      onComplete: () => {
+        next()
+      }, 
+    }) 
+  },
   components: {
     TaduSvg
   }
@@ -99,7 +123,7 @@ export default {
   margin: 0 0 40px 0;
 }
 .subTitle-contact {
-  font-size: 0.75rem;
+  font-size: 0.775rem;
   margin-bottom: 5px;
 }
 </style>

@@ -2,7 +2,9 @@
   <div class="about">
     
     <router-link to="/"><TaduSvg v-if="expShowMenu" ></TaduSvg></router-link>
-    
+    <div class="title-mobile">
+        <h3>{{ $route.name }}</h3>
+    </div>
     <section class="all">     
         <div class="container-default">
           <div class="text-about">
@@ -69,7 +71,28 @@ import TaduSvg from '@/components/TaduSvg.vue'
 export default {
   name: 'About',
   props:['expShowMenu'],
-
+  mounted() {
+    this.tlPageIn = this.$gsap.timeline()
+    this.tlPageIn
+      .from('.container-default', { 
+        opacity: 0,
+        y:-300, 
+        duration: .8, 
+        ease: 'power2.out' 
+      })
+  },
+  beforeRouteLeave(to, from, next) {
+    this.tlPageOut = this.$gsap.timeline()
+    this.tlPageOut.to('.container-default', {
+      opacity: 0,
+      y:300, 
+      duration: .3, 
+      ease: 'power1.in',
+      onComplete: () => {
+        next()
+      }, 
+    }) 
+  },
   components: {
     TaduSvg
   }
@@ -79,8 +102,7 @@ export default {
 <style lang="scss">
 /* ABOUT */
 .subTitle-about {
-  margin-bottom: 80px;
-  /* font-size: 18px; */
+  margin:0 0 60px 0;
   text-align: center;
 }
 
@@ -94,15 +116,14 @@ export default {
 .text-about {
   width: 100%;
   max-width: 640px;
-  margin-bottom: 150px;
-  /* margin-top: 80px; */
+  margin: 0 0 60px 0;
 }
 
 .img-about {
   width: 100%;
   max-width: 420px;
   margin-bottom: 50px;
-  font-size: 0.875rem;
+  font-size: 0.775rem;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -111,8 +132,8 @@ export default {
 .img-about div {
   width: 100%;
   max-width: 173px;
-  padding-left: 20px;
-  padding-right: 10px;
+  padding:5px 0 0 20px;
+
 }
 /* END ABOUT */
 </style>

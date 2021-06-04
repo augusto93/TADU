@@ -4,7 +4,7 @@
       <div class="box-menu">
         
         <nav class="menu">
-          <div v-if="showHome" id="taduArq" class="taduarq" :class="{ taduarqani: showTaduArq }">
+          <div id="taduArq" class="taduarq" :class="{ taduarqani: showTaduArq }">
             <h2>
               <router-link to="/">Tadu Arquitetura</router-link>
             </h2>
@@ -22,9 +22,7 @@
           </ul>
         </nav>
       </div>
-      <div v-if="showHome"  class="title-mobile">
-        <h3>{{ $route.name }}</h3>
-      </div>  
+        
     </header>
     <router-view :expShowMenu="showMenu"></router-view>
     <footer>
@@ -62,7 +60,7 @@
 // @ is an alias to /src
 // import TaduSvg from '@/components/TaduSvg.vue'
 // import { mapState, mapMutations } from "vuex"
- 
+
 export default {
   name: 'App',
   data() {
@@ -82,18 +80,23 @@ export default {
     this.checkPath()
   },
   mounted() {
-    
   },
+  
   methods: {
     // ...mapMutations(['CHANGE_MENU']),
     checkPath: function() { 
       let route = this.$route.path
       if (route === '/') {
+        this.tlTDmenuLeave = this.$gsap.timeline()
+        this.tlTDmenuLeave.call(function() {
+          var taduarq = document.getElementById("taduArq");
+          taduarq.classList.remove("taduarqani");
+        });
         this.showHome = false
       } else {
         this.showHome = true
-        this.tlTDmenu = this.$gsap.timeline()
-        this.tlTDmenu.call(function() {
+        this.tlTDmenuEnter = this.$gsap.timeline()
+        this.tlTDmenuEnter.call(function() {
           var taduarq = document.getElementById("taduArq");
           taduarq.classList.add("taduarqani");
         });
@@ -148,7 +151,7 @@ export default {
 
   header {
     position: fixed;
-    z-index: 96;
+    z-index: 97;
     top: 60px;
     max-width: 1280px;
     width: 100%;
@@ -180,7 +183,7 @@ export default {
   }
 
   .taduarq {
-    transition: all 0.5s ease-out;
+    transition: all 0.4s ease-out;
     overflow: hidden;
     opacity: 0;
     flex:0;
@@ -269,12 +272,13 @@ export default {
 }
 
 .title-mobile {
-  position: relative;
+  position: fixed;
   width: 100%;
   flex-direction: row;
   justify-content: center;
-  padding: 20px 0 0 0;
+  padding: 40px 0 0 0;
   display: none;
+  z-index: 97;
 }
 
 .title-mobile h3 {
@@ -283,7 +287,7 @@ export default {
 
 .container-default {
   position: relative;
-  padding: 100px 0 40px 0;
+  padding: 120px 0 40px 0;
 }
 footer {
   position: fixed;
@@ -456,10 +460,8 @@ footer {
   display: none;
   flex-direction: row;
   justify-content: center;
-  top: 0;
-  padding: 0;
   position: fixed;
-  padding: 120px 0 0 0;
+  padding: 80px 0 0 0;
   z-index: 96;
 }
 /* .buttonaboutprojectactive {
@@ -535,7 +537,7 @@ footer {
   }
 }
 @media screen and (max-width: 1024px) {
-  header div.box-menu nav {
+  header div.box-menu nav ul {
     display: none;
   }
   .container-gallery {
@@ -554,7 +556,7 @@ footer {
     display: flex;
   }
   .container-gallery2 {
-    padding: 140px 0 40px 0;
+    padding: 160px 0 40px 0;
   }
   footer {
     display: flex;

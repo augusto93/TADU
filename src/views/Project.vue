@@ -1,5 +1,12 @@
 <template>
   <div class="project">
+
+    <router-link to="/"><TaduSvg v-if="expShowMenu" ></TaduSvg></router-link>
+
+    <div class="title-mobile">
+      <h3>{{ projetos.nome }}</h3>
+    </div>
+
     <div :class="{ buttonaboutprojectactive: showAbout }" class="container-button-about-project">
       <div  v-on:click="showAbout = !showAbout" class="button-about-project" >
         <div :class="{ classactiveabout: showAbout }" class="plus-straps">
@@ -9,9 +16,8 @@
       </div>
     </div>
     
-    <router-link to="/"><TaduSvg v-if="expShowMenu" ></TaduSvg></router-link>
     
-    <!-- <h1>{{ projetos}}</h1> -->
+    
     <section class="all">
       <div class="container-gallery2">
         <div class="main-img-project">
@@ -22,7 +28,7 @@
             <p>{{ projetos.descricao }}</p>
           </div>
           <div class="about-project-bl2">
-            <p>{{ projetos.especificacao }}</p>
+            <p><span style="white-space: pre;">{{ projetos.especificacao }}</span></p>
           </div>
         </div>
         <div class="grid-imgs-project">
@@ -81,8 +87,38 @@ export default {
   },
   props:['expShowMenu', 'project'],
   mixins: [fetchData],
+    computed: {
+    // ...mapState(["showMenuVuex"])
+  },
+  mounted() {
+    
+  },
+  updated() {
+    this.$nextTick(() => {
+      this.tlPageIn = this.$gsap.timeline()
+      this.tlPageIn
+      .from('.main-img-project', { 
+        opacity: 0,
+        y:-300, 
+        duration: .8, 
+        ease: 'power2.out' 
+      })
+    })
+  },
   created() {
     this.fetchProjetos(`/projeto/${this.project}`);
+  },
+  beforeRouteLeave(to, from, next) {
+    this.tlPageOut = this.$gsap.timeline()
+    this.tlPageOut.to('.container-gallery2', {
+      opacity: 0,
+      y:300, 
+      duration: .3, 
+      ease: 'power1.in',
+      onComplete: () => {
+        next()
+      }, 
+    }) 
   },
   components: {
     TaduSvg
