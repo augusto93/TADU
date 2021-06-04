@@ -120,6 +120,8 @@ export default {
 
 <style lang="scss">
 .info-contact {
+  width: 100%;
+  max-width: 480px;
   margin: 0 0 40px 0;
 }
 .subTitle-contact {

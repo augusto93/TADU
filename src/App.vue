@@ -10,9 +10,15 @@
             </h2>
           </div>
           <ul>
-            <li><router-link to="/about">About</router-link></li>
-            <li><router-link to="/projects">Projects</router-link></li>
-            <li><router-link to="/contact">Contact</router-link></li>
+            <li @click="active = 'about'" :class="{active:active === 'about'}">
+                <router-link to="/about">About</router-link>
+            </li>
+            <li @click="active = 'projects'" :class="{active:active === 'projects'}">
+                <router-link to="/projects">Projects</router-link>
+            </li>
+            <li @click="active = 'contact'" :class="{active:active === 'contact'}">
+                <router-link to="/contact">Contact</router-link>
+            </li>
           </ul>
         </nav>
         <nav class="translate">
@@ -65,6 +71,7 @@ export default {
   name: 'App',
   data() {
     return {
+      active: null,
       showMenu: false,
       showHome:true,
       showTaduArq: false,
@@ -104,6 +111,19 @@ export default {
       let stateMenuHome = this.showMenu
       if(stateMenuHome === true & route === '/'){
         this.showMenu = !this.showMenu
+      }
+      this.markMenu();
+    },
+    markMenu: function(){
+      let route = this.$route.path
+      if(route === '/') {
+        this.active = null
+      } else if(route === '/about') {
+        this.active = 'about'
+      } else if(route === '/projects') {
+        this.active = 'projects'
+      } else if(route === '/contact') {
+        this.active = 'contact'
       }
     }
   }
@@ -160,7 +180,7 @@ export default {
 
   header div.box-menu {
     position: relative;
-    width: 40%;
+    width: 50%;
     /* border: 1px solid blue; */
     display: flex;
     flex-direction: row;
@@ -222,6 +242,10 @@ export default {
   header div.box-menu nav ul li:hover::after {
     width: 100%;
   }
+
+   header div.box-menu nav ul li.active::after {
+    width: 100%;
+   }
 
   header div.box-menu nav.menu ul li:nth-child(2) {
     padding: 0 2.5vw 0 2.5vw;
@@ -679,8 +703,8 @@ footer {
 header div.box-menu h2 {
 display: block !important;
 }
-header div.box-menu {
-  width:60% !important;
-}
+// header div.box-menu {
+//   width:60% !important;
+// }
 
 </style>
