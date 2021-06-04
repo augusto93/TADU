@@ -124,6 +124,8 @@ export default {
         this.active = 'projects'
       } else if(route === '/contact') {
         this.active = 'contact'
+      } else if(route != '/' & route != '/about' & route != '/contact') {
+        this.active = 'projects'
       }
     }
   }
