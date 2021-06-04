@@ -3,7 +3,10 @@
     <TaduSvg></TaduSvg>
     <section class="all">
       <div class="main-imgs">
-        <ul>
+        <div style="margin: -150px 0 0 0;" v-if="loading">
+          <p>loading...</p>
+        </div>
+        <ul v-if="projetos">
           <li v-for="projetos in projetos" :key="projetos.id">
             <router-link :to="{name: 'Project', params:{project: projetos.id}}"><img :src="projetos.fotocapa" /></router-link>
           </li>

@@ -6,7 +6,10 @@
       <h3>{{ $route.name }}</h3>
     </div>
     <section class="all">
-      <div class="container-gallery">
+      <div class="loading" v-if="loading">
+        <p>loading...</p>
+      </div>
+      <div v-if="projetos" class="container-gallery">
         <div v-for="projetos in projetos" :key="projetos.id" class="box-gallery">
           <router-link :to="{name: 'Project', params:{project: projetos.id}}"><img :src="projetos.fotocapa" /></router-link>
         </div>
@@ -32,19 +35,14 @@ export default {
     this.fetchProjetos("/projeto");
   },
   mounted() {
-    // setTimeout(this.gridProjects, 500);
-    this.tlPageIn = this.$gsap.timeline()
-    this.tlPageIn
-      .from('.container-gallery', { 
-        opacity: 0,
-        y:-300, 
-        duration: .8, 
-        ease: 'power2.out' 
-        })
+  },
+  watch: {
+    'projetos': 'pageIn'
   },
   updated() {
     this.$nextTick(() => {
-        this.gridProjects()
+      this.gridProjects()
+      this.pageIn()
     })
   },
   methods: {
@@ -63,6 +61,16 @@ export default {
         console.log('não é múltiplo')
         lastDiv.style.gridColumn="span 2"
       }
+    },
+    pageIn(){
+      this.tlPageIn = this.$gsap.timeline()
+      this.tlPageIn
+      .from('.container-gallery', { 
+      opacity: 0,
+      y:-300, 
+      duration: .8, 
+      ease: 'power2.out' 
+      })        
     }
   },
   beforeRouteLeave(to, from, next) {

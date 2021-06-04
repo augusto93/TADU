@@ -535,8 +535,19 @@ footer {
 .plus-straps.classactiveabout div:nth-child(2) {
   transform: translateY(-1px) rotate(-135deg);
 }
-
 /* END PROJETO */
+
+.loading {
+  position:fixed;
+  width:100%;
+  height: 100vh;
+  top:0;
+  left:0;
+  display:flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
 
 @media screen and (max-width: 1280px) {
   section.all {
@@ -683,7 +694,7 @@ footer {
   position: fixed;
   width: 100%;
   height: 100.5%;
-  background-color: rgba(0, 0, 0, 0.9);
+  background-color: rgba(0, 0, 0, 1);
   z-index: 97;
   top: 0;
   display: flex;
