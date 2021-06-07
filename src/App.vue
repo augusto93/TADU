@@ -422,6 +422,20 @@ footer {
 }
 .about-project .about-project-bl1 {
   width: 50%;
+  position: relative;
+}
+.about-project .about-project-bl1 div.bloco1-about {
+  position:absolute;
+  z-index: 90;
+}
+.about-project .about-project-bl1 div.bloco2-about {
+  opacity: 0;
+  height: 0;
+  min-height: 80px;
+}
+
+.about-project .about-project-bl1 p {
+  cursor:pointer;
 }
 .about-project .about-project-bl2 {
   width: 30%;
@@ -535,6 +549,23 @@ footer {
 .plus-straps.classactiveabout div:nth-child(2) {
   transform: translateY(-1px) rotate(-135deg);
 }
+.project-header {
+  display: flex;
+  width:100%;
+  flex-direction: row;
+  justify-content: space-between;
+  margin:0 0 10px 0;
+}
+
+.project-header .prev-next {
+  display:flex;
+  flex-direction: row;
+}
+
+.project-header .prev-next div:nth-child(2) {
+  margin:0 10px 0 10px;
+}
+
 /* END PROJETO */
 
 .loading {
@@ -661,6 +692,18 @@ footer {
   }
 }
 /* ANIMAÇÕES */
+
+
+.more-project-2-enter-active,
+.more-project-2-leave-active {
+  transition: all .8s ease-in;
+  max-height: 1030px;
+}
+.more-project-2-enter, .more-project-2-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  max-height: 0;
+  opacity: 0;
+}
+
 
 /* MENU MOBILE */
 .fade-enter-active,

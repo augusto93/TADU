@@ -18,15 +18,37 @@
     
     <section class="all">
       <div class="loading" v-if="loading">
-        <p>loading...</p>
+        <loading :options="defaultOptions" :height="150" :width="150"/> 
+        <!-- <p>loading...</p> -->
       </div>
       <div v-if="projetos" class="container-gallery2">
+        <div class="project-header">
+          <div>{{ projetos.nome }}</div>
+          <div class="prev-next">
+            <div>Previous</div>
+            <div>.</div>
+            <div>Next</div>
+          </div>
+        </div>
         <div class="main-img-project">
           <img :src="projetos.fotocapa" alt="">
         </div>
         <div class="about-project">
           <div class="about-project-bl1">
-            <p><span style="white-space: pre-wrap;">{{ projetos.descricao }}</span></p>
+            
+           
+            <div v-if="!readMoreActivated" class="bloco1-about">
+              <p @click="openActivateReadMore"><span style="white-space: pre-wrap;">{{ projetos.descricao.slice(0, 180) }}</span><span class="more">...</span></p>
+              <p class="more" @click="openctivateReadMore">+</p>
+            </div>
+            
+            
+            <div class="bloco2-about">
+              <p @click="closeActivateReadMore"><span style="white-space: pre-wrap;">{{ projetos.descricao }}</span></p>
+              <p @click="closeActivateReadMore">-</p>
+            </div>
+    
+            
           </div>
           <div class="about-project-bl2">
             <p><span style="white-space: pre-wrap;">{{ projetos.especificacao }}</span></p>
@@ -44,15 +66,15 @@
           </div> -->
         </div>
         <div class="more-projects">
-        <div>
-          More projects
-        </div>
-        <div>
-          <img src="img.jpg" alt="">
-        </div>
-        <div>
-          <img src="img.jpg" alt="">
-        </div> 
+          <div>
+           <router-link to="/projects"> More projects</router-link>
+          </div>
+          <div>
+            <img src="img.jpg" alt="">
+          </div>
+          <div>
+            <img src="img.jpg" alt="">
+          </div> 
         </div>
       </div>
     </section>
@@ -61,13 +83,16 @@
     <div v-if="showAbout" class="box-about-project" >
       <div class="about-project-blcont">
         <div class="about-project-bl1-mob">
-          <p>{{ projetos.descricao }}</p>
+          <p><span style="white-space: pre-wrap;">{{ projetos.descricao }}</span></p>
         </div>
         <div class="about-project-bl2-mob">
-          <p>Floor: 1<br />
+          <p>
+            <span style="white-space: pre-wrap;">
+            Floor: 1<br />
             Floor area : 77.25 m²<br />
             Structure : SRC (CFT), RC<br />
             Completion: 03/2020
+            </span>
           </p>
         </div>
       </div>
@@ -79,12 +104,17 @@
 <script>
 import TaduSvg from '@/components/TaduSvg.vue'
 import fetchData from '@/mixins/fetchData.js'
+import Loading from '@/components/loading.vue';
+import * as animationData from '@/assets/tadu.json';
+  
 
 export default {
   name: 'Project',
    data() {
     return {
-      showAbout: false
+      showAbout: false,
+      readMoreActivated: false,
+      defaultOptions: {animationData: animationData.default}
     }
   },
   props:['expShowMenu', 'project'],
@@ -93,6 +123,47 @@ export default {
     this.fetchProjetos(`/projeto/${this.project}`);
   },
   mounted() {
+    
+  },
+  methods: {
+    activateReadMore(){
+      this.readMoreActivated = !this.readMoreActivated;
+    },
+    openActivateReadMore(){
+      this.tlopenActivateReadMore = this.$gsap.timeline()
+      this.tlopenActivateReadMore
+      .to('.bloco2-about', {
+        opacity: 1,
+        height: "auto",
+        duration: .5, 
+        ease: 'power2.out',
+      })
+      .to('.more', {
+        opacity: 0,
+        duration: .5, 
+        ease: 'power2.out',
+        onComplete: () => {
+          this.activateReadMore()
+        }, 
+      },"<")
+    },
+    closeActivateReadMore(){
+      this.tlcloseActivateReadMore = this.$gsap.timeline()
+      this.tlcloseActivateReadMore
+      .to('.bloco1-about', {
+        opacity: 1,
+        duration: .1, 
+        onComplete: () => {
+          this.activateReadMore()
+        }, 
+      })
+      .to('.bloco2-about', {
+        opacity: 0,
+        height: 0,
+        duration: 1, 
+        ease: 'power2.out',
+      })
+    },
     
   },
   updated() {
@@ -121,7 +192,8 @@ export default {
     }) 
   },
   components: {
-    TaduSvg
+    TaduSvg,
+    'loading': Loading
   }
 }
 </script>
