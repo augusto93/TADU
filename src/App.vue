@@ -452,6 +452,7 @@ footer {
   position: relative;
   /* height: 100%; */
   grid-column: span 1;
+  overflow: hidden;
 }
 
 .box-gallery img {
@@ -467,15 +468,28 @@ footer {
 .hover-projects {
   position:absolute;
   top:0;
-  left: 0;
+  left:0;
   width:100%;
   height: 100%;
-  background-color: #735426;
-  visibility: hidden;
+  display:none;
 } 
-.hover-projects div {
-  padding:20px;
+.hovered {
+  display: block;
 }
+.animation-hover {
+  position:relative;
+  background-color: #735426;
+  width:100%;
+  height: 100%;
+  opacity: 0;
+  top:0;
+  transform: translateY(-100px);
+}
+
+.animation-hover div {
+  padding:2%;
+}
+
 /* END PROJETOS */
 /* PROJETO */
 .container-gallery2 {
