@@ -17,10 +17,12 @@
     </div>
     
     <section class="all">
+      <transition name="fade">
       <div class="loading" v-if="loading">
-        <loading :options="defaultOptions" :height="150" :width="150"/> 
+        <lottie :options="defaultOptions" :height="150" :width="150"/>
         <!-- <p>loading...</p> -->
       </div>
+      </transition>
       <div v-if="projetos" class="container-gallery2">
         <div class="project-header">
           <div>{{ projetos.nome }}</div>
@@ -39,7 +41,7 @@
            
             <div v-if="!readMoreActivated" class="bloco1-about">
               <p @click="openActivateReadMore"><span style="white-space: pre-wrap;">{{ projetos.descricao.slice(0, 180) }}</span><span class="more">...</span></p>
-              <p class="more" @click="openctivateReadMore">+</p>
+              <p class="more" @click="openActivateReadMore">+</p>
             </div>
             
             
@@ -104,9 +106,8 @@
 <script>
 import TaduSvg from '@/components/TaduSvg.vue'
 import fetchData from '@/mixins/fetchData.js'
-import Loading from '@/components/loading.vue';
+import Lottie from '@/components/lottie.vue';
 import * as animationData from '@/assets/tadu.json';
-  
 
 export default {
   name: 'Project',
@@ -114,7 +115,7 @@ export default {
     return {
       showAbout: false,
       readMoreActivated: false,
-      defaultOptions: {animationData: animationData.default}
+      defaultOptions: {animationData: animationData.default},
     }
   },
   props:['expShowMenu', 'project'],
@@ -124,6 +125,9 @@ export default {
   },
   mounted() {
     
+  },
+  watch: {
+    'projetos': 'pageIn'
   },
   methods: {
     activateReadMore(){
@@ -164,21 +168,29 @@ export default {
         ease: 'power2.out',
       })
     },
-    
-  },
-  updated() {
-    this.$nextTick(() => {
-      this.tlPageIn = this.$gsap.timeline()
-      this.tlPageIn
-      .from('.main-img-project', { 
+    pageIn(){
+      setTimeout(() => {
+        this.tlPageIn = this.$gsap.timeline()
+        this.tlPageIn
+        .to('.container-gallery2', {
+          duration: 0.1,
+          visibility: 'visible',
+        })
+        .from('.container-gallery2', { 
         opacity: 0,
         y:-300, 
         duration: .8, 
         ease: 'power2.out' 
       })
+      }, 0)        
+    }
+    
+  },
+  updated() {
+    this.$nextTick(() => {
+      
     })
   },
-
   beforeRouteLeave(to, from, next) {
     this.tlPageOut = this.$gsap.timeline()
     this.tlPageOut.to('.container-gallery2', {
@@ -193,7 +205,7 @@ export default {
   },
   components: {
     TaduSvg,
-    'loading': Loading
+    'lottie': Lottie
   }
 }
 </script>

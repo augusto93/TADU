@@ -1,6 +1,7 @@
 <template>
   <div id="app">
-    <header>
+    <header id="header" 
+    :class="[{ sticky_to_top: stickyActive }, { hide_header: hideHome }]" >
       <div class="box-menu">
         
         <nav class="menu">
@@ -75,6 +76,8 @@ export default {
       showMenu: false,
       showHome:true,
       showTaduArq: false,
+      stickyActive: false,
+      hideHome:false
     }
   },
   watch: {
@@ -85,8 +88,13 @@ export default {
   },
   created() {
     this.checkPath()
+    document.addEventListener('scroll', this.stickyHeader)
+  },
+  destroyed () {
+    window.removeEventListener('scroll', this.stickyHeader);
   },
   mounted() {
+    
   },
   
   methods: {
@@ -96,11 +104,14 @@ export default {
       if (route === '/') {
         this.tlTDmenuLeave = this.$gsap.timeline()
         this.tlTDmenuLeave.call(function() {
-          var taduarq = document.getElementById("taduArq");
+          const taduarq = document.getElementById("taduArq");
           taduarq.classList.remove("taduarqani");
         });
+        
+        this.hideHome = true
         this.showHome = false
       } else {
+        this.hideHome = false
         this.showHome = true
         this.tlTDmenuEnter = this.$gsap.timeline()
         this.tlTDmenuEnter.call(function() {
@@ -114,7 +125,7 @@ export default {
       }
       this.markMenu();
     },
-    markMenu: function(){
+    markMenu: function() {
       let route = this.$route.path
       if(route === '/') {
         this.active = null
@@ -127,6 +138,14 @@ export default {
       } else if(route != '/' & route != '/about' & route != '/contact') {
         this.active = 'projects'
       }
+    },
+    stickyHeader: function() {
+      const distanceToTop = window.pageYOffset;
+       if (distanceToTop != 0){
+         this.stickyActive = true
+       }else {
+         this.stickyActive = false
+       }
     }
   }
 }
@@ -174,10 +193,17 @@ export default {
   header {
     position: fixed;
     z-index: 97;
-    top: 60px;
+    top: 0;
+    // margin:40px 0 0 0;
+    padding:60px 0 20px 0;
     max-width: 1280px;
     width: 100%;
-    /* border: 1px solid #ffffff; */
+    background: rgba(0, 0, 0, 0.92);
+    transition:  transform .5s ease;
+  }
+
+  .sticky_to_top{
+    transform: translate(0, -40px);
   }
 
   header div.box-menu {
@@ -205,7 +231,7 @@ export default {
   }
 
   .taduarq {
-    transition: all 0.4s ease-out;
+    transition: all 0.5s ease-out;
     overflow: hidden;
     opacity: 0;
     flex:0;
@@ -304,7 +330,7 @@ export default {
   justify-content: center;
   padding: 40px 0 0 0;
   display: none;
-  z-index: 97;
+  z-index: 96;
 }
 
 .title-mobile h3 {
@@ -375,12 +401,51 @@ footer {
 
 /* PROJETOS */
 .container-gallery {
+  position:relative;
+  padding: 100px 0 0 0;
+  visibility: hidden;
+}
+
+.projects-header {
+  position:sticky;
+  width:100%;
+  padding:0 0 10px 0;
+  display:flex;
+  flex-direction: row;
+  top:67px;
+  background: rgba(0, 0, 0, 0.92);
+  z-index: 96;
+}
+
+.projects-header div {
+  margin:0 5px 0 0;
+}
+.projects-header ul {
+  flex-grow: 2;
+}
+.projects-header ul li{
+  display: inline;
+  width:auto;
+  color:#565656;
+  margin:0 3% 0 0;
+  cursor:pointer;
+  transition: color .3s ease;
+}
+
+.projects-header ul li.target, .projects-header ul li:hover {
+  color:#FFFFFF;
+}
+
+.projects-header ul li:last-child {
+  margin:0;
+}
+
+.grid-projects {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-auto-rows: 774px;
   grid-auto-flow: row;
   grid-gap: 40px;
-  padding: 100px 0 0 0;
 }
 
 .box-gallery {
@@ -398,11 +463,25 @@ footer {
 .box-gallery:nth-child(3n) {
   grid-column: span 2;
 }
+
+.hover-projects {
+  position:absolute;
+  top:0;
+  left: 0;
+  width:100%;
+  height: 100%;
+  background-color: #735426;
+  visibility: hidden;
+} 
+.hover-projects div {
+  padding:20px;
+}
 /* END PROJETOS */
 /* PROJETO */
 .container-gallery2 {
   position: relative;
   padding: 100px 0 40px 0;
+  visibility: hidden;
 }
 .main-img-project {
   position: relative;
@@ -575,9 +654,13 @@ footer {
   top:0;
   left:0;
   display:flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.loading p{
+  font-size: 0.5rem;
 }
 
 @media screen and (max-width: 1280px) {
@@ -591,9 +674,8 @@ footer {
     width: 90%;
     margin-left: 5%;
     margin-right: 5%;
-    top: 40px;
   }
-  .container-gallery {
+  .grid-projects {
     grid-gap: 5vw;
     grid-auto-rows: 714px;
   }
@@ -608,7 +690,7 @@ footer {
   header div.box-menu nav ul {
     display: none;
   }
-  .container-gallery {
+  .grid-projects{
     grid-auto-rows: 620px;
   }
   .title-mobile {
@@ -632,19 +714,29 @@ footer {
   .box-menu-mobile {
     margin: 0 0 100px 10%;
   }
+  .projects-header {
+    top:65px;
+  }
+  .projects-header ul li{ 
+    display:block;
+    margin:0 0 5px 0;
+  } 
+  .hide_header{
+    display:none;
+  }
 }
 
 @media screen and (max-width: 768px) {
   .container-default {
     /* padding: 0 0 0 0; */
   }
-  .container-gallery {
+  .grid-projects {
     grid-auto-rows: 464px;
   }
 }
 
 @media screen and (max-width: 540px) {
-  .container-gallery {
+  .grid-projects {
     grid-auto-rows: 326px;
   }
   .img-about img,
@@ -654,19 +746,19 @@ footer {
 }
 
 @media screen and (max-width: 414px) {
-  .container-gallery {
+  .grid-projects {
     grid-auto-rows: 250px;
   }
 }
 
 @media screen and (max-width: 375px) {
-  .container-gallery {
+  .grid-projects {
     grid-auto-rows: 225px;
   }
 }
 
 @media screen and (max-width: 320px) {
-  .container-gallery {
+  .grid-projects {
     grid-auto-rows: 192px;
   }
 }
@@ -687,9 +779,9 @@ footer {
     margin-left: 5%;
     margin-right: 5%;
   }
-  .container-gallery {
-    padding: 100px 0 0 0;
-  }
+  // .container-gallery {
+  //   padding: 100px 0 0 0;
+  // }
 }
 /* ANIMAÇÕES */
 

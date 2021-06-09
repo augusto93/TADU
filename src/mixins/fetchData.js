@@ -12,10 +12,10 @@ export default {
       fetch(`http://taduapilocal.local/wp-json/api${url}`)
       .then(r => r.json())
       .then(r => {
-        setTimeout(() => {
+        // setTimeout(() => {
           this.projetos = r;
           this.loading = false;
-        }, 5000)
+        // }, 5000)
       })
     },
   }
