@@ -24,7 +24,7 @@
         <div class="grid-projects">
           <div v-for="projetos in projetos"  :key="projetos.id" class="box-gallery">
             <router-link :to="{name: 'Project', params:{project: projetos.id}}">
-              <img @mouseover="mouseOverProjects" :src="projetos.fotocapa" />
+              <img :src="projetos.fotocapa" />
               <div class="hover-projects">
                 <div class="animation-hover">
                   <div>{{projetos.nome}}</div>
@@ -99,37 +99,7 @@ export default {
           ease: 'power2.out' 
         })
       }, 0)        
-    },
-
-    mouseOverProjects(e) {
-      const gsap = this.$gsap.timeline()
-      let divHover = e.target.nextElementSibling
-      divHover.classList.add("hovered");
-      let divHoverChildren = divHover.firstChild
-      
-      divHover.onmouseenter = function() {
-        divHover.classList.add("hovered");
-        gsap.to(divHoverChildren, {
-        opacity: 1,
-        y: 0,
-        duration: .3, 
-        ease: 'power1.in'
-        })
-      };
-      divHover.onmouseleave = function(){
-        gsap.to( divHoverChildren, {
-        opacity: 0,
-        y:-100,
-        duration: .5, 
-        ease: 'power1.out',
-        onComplete: () => {
-          divHover.classList.remove("hovered");
-        }, 
-        }) 
-        
-      };
-    },
-
+    }
   },
   beforeRouteLeave(to, from, next) {
     this.tlPageOut = this.$gsap.timeline()

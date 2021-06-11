@@ -312,16 +312,29 @@ export default {
   margin-top: 110vh;
   }
 
-  .main-imgs ul li {
+.main-imgs ul li {
   margin:0 0 40px 0;
-  }
+  
+}
+
+.box-img-home{
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
 
 .main-imgs img {
   width: 100%;
   max-height: 620px;
   min-height: 415px;
   object-fit: cover;
+  transform: scale(1);
+  transition: all .5s ease; 
 }
+
+ .main-imgs ul li:hover img{
+    transform: scale(1.05);
+  }
 
 .title-mobile {
   position: sticky;
@@ -462,6 +475,8 @@ footer {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transform: scale(1);
+  transition: .5s ease;
 }
 
 .box-gallery:nth-child(3n) {
@@ -470,23 +485,33 @@ footer {
 
 .hover-projects {
   position:absolute;
-  top:0;
+  top:-100px;
   left:0;
   width:100%;
   height: 100%;
-  display:none;
+  opacity: 0;
+  transition: .3s ease-in;
 } 
-.hovered {
-  display: block;
+
+
+
+.box-gallery:hover img{
+ transform: scale(1.05);
 }
+
+.box-gallery:hover .hover-projects, .box-gallery:active .hover-projects  {
+  opacity: 1;
+  top:0;
+  transition: .3s ease-out;
+  transition-delay: .3s;
+}
+
 .animation-hover {
   position:relative;
   background-color: #735426;
   width:100%;
   height: 100%;
-  opacity: 0;
   top:0;
-  transform: translateY(-100px);
 }
 
 .animation-hover div {

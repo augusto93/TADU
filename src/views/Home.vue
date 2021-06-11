@@ -8,9 +8,12 @@
         </div>
         <ul v-if="projetos">
           <li v-for="projetos in projetos" :key="projetos.id">
-            <router-link :to="{name: 'Project', params:{project: projetos.id}}"><img :src="projetos.fotocapa" /></router-link>
+            <div class="box-img-home">
+              <router-link :to="{name: 'Project', params:{project: projetos.id}}"><img :src="projetos.fotocapa" /></router-link>
+            </div>
             <p>{{projetos.nome}}</p>
           </li>
+          
         </ul>
       </div>
     </section>
