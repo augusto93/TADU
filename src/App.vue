@@ -324,13 +324,16 @@ export default {
 }
 
 .title-mobile {
-  position: fixed;
+  position: sticky;
   width: 100%;
   flex-direction: row;
   justify-content: center;
-  padding: 40px 0 0 0;
+  padding: 10px 0 10px 0;
   display: none;
-  z-index: 96;
+  z-index: 97;
+  background: rgba(0, 0, 0, 0.92);
+  top:65px;
+  margin:120px 0 0 0;
 }
 
 .title-mobile h3 {
@@ -593,9 +596,10 @@ footer {
   display: none;
   flex-direction: row;
   justify-content: center;
-  position: fixed;
-  padding: 80px 0 0 0;
+  position: sticky;
+  padding: 0;
   z-index: 96;
+  top:115px;
 }
 /* .buttonaboutprojectactive {
   width: 90%;
@@ -686,8 +690,8 @@ footer {
 
   header {
     width: 90%;
-    margin-left: 5%;
-    margin-right: 5%;
+    padding-left: 5%;
+    padding-right: 5%;
   }
   .grid-projects {
     grid-gap: 5vw;
@@ -703,6 +707,12 @@ footer {
 @media screen and (max-width: 1024px) {
   header div.box-menu nav ul {
     display: none;
+  }
+  .container-default {
+    padding: 0 0 0 0; 
+  }
+  .container-gallery {
+    padding:0 0 0 0;
   }
   .grid-projects{
     grid-auto-rows: 620px;
@@ -720,7 +730,7 @@ footer {
     display: flex;
   }
   .container-gallery2 {
-    padding: 160px 0 40px 0;
+    padding: 0 0 40px 0;
   }
   footer {
     display: flex;
@@ -729,7 +739,7 @@ footer {
     margin: 0 0 100px 10%;
   }
   .projects-header {
-    top:65px;
+    top:110px;
   }
   .projects-header ul li{ 
     display:block;
@@ -741,9 +751,6 @@ footer {
 }
 
 @media screen and (max-width: 768px) {
-  .container-default {
-    /* padding: 0 0 0 0; */
-  }
   .grid-projects {
     grid-auto-rows: 464px;
   }
