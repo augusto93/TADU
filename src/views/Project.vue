@@ -71,12 +71,11 @@
           <div>
            <router-link to="/projects"> More projects</router-link>
           </div>
-          <div>
-            <img src="img.jpg" alt="">
+          <div class="prev-next">
+            <div>Previous</div>
+            <div>.</div>
+            <div>Next</div>
           </div>
-          <div>
-            <img src="img.jpg" alt="">
-          </div> 
         </div>
       </div>
     </section>

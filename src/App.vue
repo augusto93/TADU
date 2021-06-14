@@ -374,7 +374,8 @@ footer {
 }
 
 .box-menu-mobile .menu-mobile ul li {
-  font-size: 1.365rem;
+  font-size: 1rem;
+  margin:0 0 2px 0;
 }
 
 .box-menu-mobile .translate-mobile {
@@ -383,7 +384,11 @@ footer {
 
 .box-menu-mobile .translate-mobile ul li {
   display: inline;
-  font-size: 0.875rem;
+  font-size: 0.675rem;
+}
+
+.box-menu-mobile .translate-mobile ul li:first-child{
+  margin:0 10px 0 0;
 }
 
 .bt-menu-mobile {
@@ -408,7 +413,7 @@ footer {
 
 .bt-menu-mobile .hamburguer-straps div {
   width: 100%;
-  height: 2px;
+  height: 1px;
   background-color: white;
   -webkit-transition: all 0.3s ease-in-out;
   -o-transition: all 0.3s ease-in-out;
@@ -602,19 +607,20 @@ footer {
   flex-wrap: wrap;
   flex-direction: row;
   padding: 100px 0 0 0;
+  justify-content: space-between;
 }
 
-.more-projects div {
-  width: 32%;
-}
+// .more-projects div {
+//   width: 32%;
+// }
 
-.more-projects div:nth-child(2) {
-  padding: 0 2% 0 2%;
-}
+// .more-projects div:nth-child(2) {
+//   padding: 0 2% 0 2%;
+// }
 
-.more-projects div img {
-  width: 100%;
-}
+// .more-projects div img {
+//   width: 100%;
+// }
 
 .container-button-about-project {
   width: 100%;
@@ -652,7 +658,7 @@ footer {
 }
 .plus-straps div {
   width: 100%;
-  height: 2px;
+  height: 1px;
   background-color: white;
   -webkit-transition: all 0.3s ease-in-out;
   -o-transition: all 0.3s ease-in-out;
@@ -666,7 +672,7 @@ footer {
 }
 
 .plus-straps.classactiveabout div:nth-child(1) {
-  transform: translateY(1px) rotate(135deg);
+  transform: translateY(0px) rotate(135deg);
 }
 .plus-straps.classactiveabout div:nth-child(2) {
   transform: translateY(-1px) rotate(-135deg);
@@ -679,12 +685,12 @@ footer {
   margin:0 0 10px 0;
 }
 
-.project-header .prev-next {
+.prev-next {
   display:flex;
   flex-direction: row;
 }
 
-.project-header .prev-next div:nth-child(2) {
+.prev-next div:nth-child(2) {
   margin:0 10px 0 10px;
 }
 
@@ -761,7 +767,7 @@ footer {
     display: flex;
   }
   .box-menu-mobile {
-    margin: 0 0 100px 10%;
+    margin: 0 0 60px 10%;
   }
   .projects-header {
     top:110px;
@@ -857,10 +863,10 @@ footer {
 }
 
 .hamburguer-straps.classactive .line:nth-child(1) {
-  -webkit-transform: translateY(9px) rotate(45deg);
-  -ms-transform: translateY(9px) rotate(45deg);
-  -o-transform: translateY(9px) rotate(45deg);
-  transform: translateY(9px) rotate(45deg);
+  -webkit-transform: translateY(10px) rotate(45deg);
+  -ms-transform: translateY(10px) rotate(45deg);
+  -o-transform: translateY(10px) rotate(45deg);
+  transform: translateY(10px) rotate(45deg);
 }
 
 .hamburguer-straps.classactive .line:nth-child(3) {
