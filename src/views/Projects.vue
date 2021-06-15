@@ -10,16 +10,8 @@
       </div>
       <div v-if="projetos" class="container-gallery">
         <div class="projects-header">
-          <div>Showing — </div>
-          <ul>
-            <li class="target">All</li>
-            <li>Bar & Restaurants</li>
-            <li>Corporate</li>
-            <li>Hotels</li>
-            <li>Residencies</li>
-            <li>Retails</li>
-          </ul>
-          
+          <div class="title-dropdown">Showing — </div>  
+          <Filters></Filters>        
         </div>
         <div class="grid-projects">
           <div v-for="projetos in projetos"  :key="projetos.id" class="box-gallery">
@@ -42,12 +34,13 @@
 <script>
 import TaduSvg from '@/components/TaduSvg.vue'
 import fetchData from '@/mixins/fetchData.js'
+import Filters from '../components/Filters.vue'
 
 export default {
   name: 'Projects',
   mixins: [fetchData],
   props: ['project', 'expShowMenu'],
-   data() {
+  data() {
     return {
       showAbout: false
     }
@@ -114,7 +107,8 @@ export default {
     }) 
   },  
   components: {
-    TaduSvg
+    TaduSvg,
+    Filters
   }
 }
 </script>

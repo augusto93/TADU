@@ -438,27 +438,8 @@ footer {
   z-index: 96;
 }
 
-.projects-header div {
+.projects-header div.title-dropdown {
   margin:0 5px 0 0;
-}
-.projects-header ul {
-  flex-grow: 2;
-}
-.projects-header ul li{
-  display: inline;
-  width:auto;
-  color:#565656;
-  margin:0 3% 0 0;
-  cursor:pointer;
-  transition: color .3s ease;
-}
-
-.projects-header ul li.target, .projects-header ul li:hover {
-  color:#FFFFFF;
-}
-
-.projects-header ul li:last-child {
-  margin:0;
 }
 
 .grid-projects {
