@@ -445,7 +445,7 @@ footer {
 .grid-projects {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-auto-rows: 774px;
+  // grid-auto-rows: 774px;
   grid-auto-flow: row;
   grid-gap: 40px;
 }
@@ -706,8 +706,8 @@ footer {
     padding-right: 5%;
   }
   .grid-projects {
-    grid-gap: 5vw;
-    grid-auto-rows: 714px;
+    // grid-gap: 5vw;
+    // grid-auto-rows: 714px;
   }
   .grid-imgs-project {
     grid-gap: 3vw;
@@ -726,8 +726,11 @@ footer {
   .container-gallery {
     padding:0 0 0 0;
   }
+  .box-gallery {
+    grid-column: span 2;
+  }
   .grid-projects{
-    grid-auto-rows: 620px;
+    // grid-auto-rows: 620px;
   }
   .title-mobile {
     display: flex;
@@ -764,13 +767,13 @@ footer {
 
 @media screen and (max-width: 768px) {
   .grid-projects {
-    grid-auto-rows: 464px;
+    // grid-auto-rows: 464px;
   }
 }
 
 @media screen and (max-width: 540px) {
   .grid-projects {
-    grid-auto-rows: 326px;
+    // grid-auto-rows: 326px;
   }
   .img-about img,
   .img-about div {
@@ -780,19 +783,20 @@ footer {
 
 @media screen and (max-width: 414px) {
   .grid-projects {
-    grid-auto-rows: 250px;
+    // grid-auto-rows: 250px;
   }
 }
 
 @media screen and (max-width: 375px) {
   .grid-projects {
-    grid-auto-rows: 225px;
+    // grid-auto-rows: 225px;
   }
 }
 
 @media screen and (max-width: 320px) {
   .grid-projects {
-    grid-auto-rows: 192px;
+    // grid-auto-rows: 192px;
+    justify-content: space-between;
   }
 }
 

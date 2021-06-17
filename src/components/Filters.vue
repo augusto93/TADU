@@ -2,15 +2,17 @@
   <div class="filters">
     <div class="selected-filter">
       <p class="target">All</p>
-      <div class="seta-dropdown">\/</div>
+      <div @click="clickDropdown" :class="{ dropdownActive: showDropdown }" class="seta-dropdown"></div>
     </div>
-    <ul v v-if="showDropdown">
+    <transition name="dropdown">
+    <ul v-if="showDropdown">
       <li>Bar & Restaurants</li>
       <li>Corporate</li>
       <li>Hotels</li>
       <li>Residencies</li>
       <li>Retails</li>
     </ul>
+    </transition>
   </div>
 </template>
 
@@ -19,7 +21,24 @@ export default {
   name: 'Filters',
   data() {
     return {
-      showDropdown: true
+      showDropdown:false
+    }
+  },
+  mounted() {
+    this.showFiltersDesktop();
+    window.addEventListener("resize", this.showFiltersDesktop);
+  },
+  methods: {
+    clickDropdown() {
+      this.showDropdown = !this.showDropdown
+    },
+    showFiltersDesktop() {
+      let userViewHeight = window.innerWidth;
+      if (userViewHeight >= 1024) {
+        this.showDropdown = true 
+      } else {
+        this.showDropdown = false
+      }
     }
   },
 }
@@ -66,7 +85,28 @@ export default {
 
   .seta-dropdown{
     display:none;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 12px solid #fff;
+    margin:10px 0 0 0;
+    transition: transform .5s ease;
+    transform-origin: center 25%;
   }
+  .dropdownActive{
+    transform-origin: center 25%;
+    transform: rotate(180deg);
+  }
+  .dropdown-enter-active,
+  .dropdown-leave-active {
+    transition: all .5s;
+    max-height: 230px;
+  }
+  .dropdown-enter, .dropdown-leave-to /* .fade-leave-active below version 2.1.8 */ {
+    opacity: 0;
+    max-height: 0px;
+  }
+
+
 
   @media screen and (max-width: 1024px) {
     .filters ul li{ 
@@ -86,6 +126,7 @@ export default {
     }
     .seta-dropdown{
       display:block;
+      cursor:pointer;
     }
   }
 </style>

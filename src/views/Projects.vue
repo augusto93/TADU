@@ -6,7 +6,7 @@
     </div>
     <section class="all">
       <div class="loading" v-if="loading">
-        <p>loading...</p>
+         <lottie :options="defaultOptions" :height="150" :width="150"/>
       </div>
       <div v-if="projetos" class="container-gallery">
         <div class="projects-header">
@@ -23,7 +23,6 @@
                 </div>
               </div>
             </router-link>
-            
           </div>
         </div>
       </div>
@@ -35,6 +34,8 @@
 import TaduSvg from '@/components/TaduSvg.vue'
 import fetchData from '@/mixins/fetchData.js'
 import Filters from '../components/Filters.vue'
+import Lottie from '@/components/lottie.vue';
+import * as animationData from '@/assets/tadu.json';
 
 export default {
   name: 'Projects',
@@ -42,7 +43,8 @@ export default {
   props: ['project', 'expShowMenu'],
   data() {
     return {
-      showAbout: false
+      showAbout: false,
+      defaultOptions: {animationData: animationData.default},
     }
   },
   created() {
@@ -62,16 +64,15 @@ export default {
   methods: {
     gridProjects() {
       let divs = document.querySelectorAll('.box-gallery'); 
-      // console.log(divs);
       let divsArr = Array.from(divs);
       let lastDiv = divsArr.pop(); 
       let arraySize = divsArr.length;
       let fixNumberArr = arraySize + 1;
       let fixNumberArr2 = fixNumberArr + 1;
 
-      if(fixNumberArr % 3 === 0 || (fixNumberArr2 % 3) === 0 ){
+      if(fixNumberArr % 3 === 0 || (fixNumberArr2 % 3) === 0) {
         // console.log('é múltiplo');
-      }else{
+      }else {
         // console.log('não é múltiplo')
         lastDiv.style.gridColumn="span 2"
       }
@@ -108,7 +109,8 @@ export default {
   },  
   components: {
     TaduSvg,
-    Filters
+    Filters,
+    'lottie': Lottie
   }
 }
 </script>
