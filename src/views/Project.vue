@@ -60,13 +60,8 @@
           <div v-for="fotosgaleria in projetos.fotosgaleria.slice(0, 4)" :key="fotosgaleria.id" >
             <img :src="fotosgaleria.url" :alt="fotosgaleria.description"> 
           </div>
-          <!-- <div>
-            <img :src="projetos.fotos[0].src" alt="">
-          </div>
-          <div>
-            <img :src="projetos.fotos[0].src" alt="">
-          </div> -->
         </div>
+        
         <div class="more-projects">
           <div>
            <router-link to="/projects"> More projects</router-link>

@@ -8,55 +8,19 @@
     <section class="all">     
         <div class="container-default">
           <div class="text-about">
-            <p>Criação consciente<br></p>
-            <br/>
-            <p>Somos um escritório de arquitetura aonde criamos significado traduzido em espaços e visão de mundo.</p><br > 
-            <p>Apostamos na simplicidade da resposta justa para cada novo desafio. Em linhas gerais nosso trabalho é fruto da relação generosa entre a história, o espaço e o cliente final.</p>
+            <span style="white-space: pre-wrap;">
+            {{projetos.texto}}
+            </span>
           </div>
           <div class="subTitle-about">
             Our team
           </div>
           <div class="img-about-flex">
-            <div class="img-about">
-              <img src="@/assets/person1.jpg" alt="Founder, Arquitect">
+            <div v-for="team in projetos.team"  :key="team.id"  class="img-about">
+              <img :src="team.foto" alt=" ">
               <div>
-               Thiago Tavares <br>
-               Founder, Arquitect 
-              </div>
-            </div>
-            <div class="img-about">
-              <img src="@/assets/person1.jpg" alt="Founder, Arquitect">
-              <div>
-               João Duayer <br>
-               Founder, Arquitect
-              </div>
-            </div>
-            <div class="img-about">
-              <img src="@/assets/person1.jpg" alt="Founder, Arquitect">
-              <div>
-               Melissa Lacaz <br>
-               Arquitect
-              </div>
-            </div>
-            <div class="img-about">
-              <img src="@/assets/person1.jpg" alt="Founder, Arquitect">
-              <div>
-               Eduardo Solza <br>
-               Arquitect
-              </div>
-            </div>
-            <div class="img-about">
-              <img src="@/assets/person1.jpg" alt="Founder, Arquitect">
-              <div>
-               Thiago Tavares <br>
-               Founder, Arquitect
-              </div>
-            </div>
-            <div class="img-about">
-              <img src="@/assets/person1.jpg" alt="Founder, Arquitect">
-              <div>
-               Melissa Lacaz <br>
-               Arquitect
+               {{team.nome}} <br>
+               {{team.cargo}} 
               </div>
             </div>
           </div>
@@ -67,10 +31,15 @@
 
 <script>
 import TaduSvg from '@/components/TaduSvg.vue'
+import fetchData from '@/mixins/fetchData.js'
 
 export default {
   name: 'About',
   props:['expShowMenu'],
+  mixins: [fetchData],
+  created() {
+    this.fetchProjetos("/paginas/sobre");
+  },
   mounted() {
     this.tlPageIn = this.$gsap.timeline()
     this.tlPageIn

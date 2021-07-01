@@ -44,7 +44,7 @@ export default {
   data() {
     return {
       showAbout: false,
-      defaultOptions: {animationData: animationData.default},
+      defaultOptions: {animationData: animationData.default}
     }
   },
   created() {

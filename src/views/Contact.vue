@@ -6,7 +6,7 @@
       <h3>{{ $route.name }}</h3>
     </div>
     <section class="all">        
-      <div class="container-default">
+      <!-- <div class="container-default">
         <div class="info-contact">
           <div class="subTitle-contact">
             For general inquiries
@@ -79,6 +79,17 @@
             Brazil
           </div>
         </div>
+      </div> -->
+
+      <div class="container-default">
+        <div v-for="conteudo in projetos.conteudo"  :key="conteudo.id"  class="info-contact">
+          <div class="subTitle-contact">
+            {{conteudo.titulobloco}}
+          </div>
+          <div>
+            {{conteudo.textobloco}}
+          </div>
+        </div>
       </div>
     </section>
   </div>
@@ -86,10 +97,15 @@
 
 <script>
 import TaduSvg from '@/components/TaduSvg.vue'
+import fetchData from '@/mixins/fetchData.js'
 
 export default {
   name: 'Contact',
   props:['expShowMenu'],
+  mixins: [fetchData],
+  created() {
+    this.fetchProjetos("/paginas/contato");
+  },
   mounted() {
     this.tlPageIn = this.$gsap.timeline()
     this.tlPageIn

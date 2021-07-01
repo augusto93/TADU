@@ -15,7 +15,7 @@ export default {
         // setTimeout(() => {
           this.projetos = r;
           this.loading = false;
-        // }, 5000)
+        // }, 50000)
       })
     },
   }
