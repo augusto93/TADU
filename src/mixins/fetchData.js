@@ -2,20 +2,20 @@ export default {
   data() {
     return {
       loading: true,
-      projetos: null,
+      api: null,
     };
   },
   methods: {
     fetchProjetos(url) {
       this.loading = true;
-      this.projetos = null;
+      this.api = null;
       fetch(`http://taduapilocal.local/wp-json/api${url}`)
       .then(r => r.json())
       .then(r => {
         // setTimeout(() => {
-          this.projetos = r;
+          this.api = r;
           this.loading = false;
-        // }, 50000)
+        // }, 5000)
       })
     },
   }

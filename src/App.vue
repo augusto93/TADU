@@ -356,6 +356,7 @@ export default {
 .container-default {
   position: relative;
   padding: 120px 0 40px 0;
+  visibility: hidden;
 }
 footer {
   position: fixed;
@@ -494,7 +495,7 @@ footer {
 
 .animation-hover {
   position:relative;
-  background-color: #735426;
+  // background-color: #735426;
   width:100%;
   height: 100%;
   top:0;

@@ -5,18 +5,21 @@
     <div class="title-mobile">
         <h3>{{ $route.name }}</h3>
     </div>
-    <section class="all">     
-        <div class="container-default">
+    <section class="all"> 
+        <div class="loading" v-if="loading">
+          <lottie :options="defaultOptions" :height="150" :width="150"/>
+        </div>   
+        <div v-if="api" class="container-default">
           <div class="text-about">
             <span style="white-space: pre-wrap;">
-            {{projetos.texto}}
+            {{api.texto}}
             </span>
           </div>
           <div class="subTitle-about">
             Our team
           </div>
           <div class="img-about-flex">
-            <div v-for="team in projetos.team"  :key="team.id"  class="img-about">
+            <div v-for="team in api.team"  :key="team.id"  class="img-about">
               <img :src="team.foto" alt=" ">
               <div>
                {{team.nome}} <br>
@@ -32,23 +35,45 @@
 <script>
 import TaduSvg from '@/components/TaduSvg.vue'
 import fetchData from '@/mixins/fetchData.js'
+import Lottie from '@/components/lottie.vue';
+import * as animationData from '@/assets/tadu.json';
 
 export default {
   name: 'About',
   props:['expShowMenu'],
   mixins: [fetchData],
+  data() {
+    return {
+      showAbout: false,
+      defaultOptions: {animationData: animationData.default}
+    }
+  },
   created() {
     this.fetchProjetos("/paginas/sobre");
   },
   mounted() {
-    this.tlPageIn = this.$gsap.timeline()
-    this.tlPageIn
-      .from('.container-default', { 
-        opacity: 0,
-        y:-300, 
-        duration: .8, 
-        ease: 'power2.out' 
-      })
+      
+  },
+  watch: {
+    'api': 'pageIn'
+  },
+  methods: {
+    pageIn(){
+      setTimeout(() => {
+        this.tlPageIn = this.$gsap.timeline()
+        this.tlPageIn
+        .to('.container-default', {
+          duration: 0.1,
+          visibility: 'visible',
+        })
+        .from('.container-default', { 
+          opacity: 0,
+          y:-300, 
+          duration: .8, 
+          ease: 'power2.out' 
+        })
+      }, 0)        
+    }
   },
   beforeRouteLeave(to, from, next) {
     this.tlPageOut = this.$gsap.timeline()
@@ -63,7 +88,8 @@ export default {
     }) 
   },
   components: {
-    TaduSvg
+    TaduSvg,
+    'lottie': Lottie
   }
 }
 </script>

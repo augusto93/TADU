@@ -6,12 +6,12 @@
         <div style="margin: -150px 0 0 0;" v-if="loading">
           <p>loading...</p>
         </div>
-        <ul v-if="projetos">
-          <li v-for="projetos in projetos" :key="projetos.id">
+        <ul v-if="api">
+          <li v-for="projeto in filterProjetosHome" :key="projeto.id">
             <div class="box-img-home">
-              <router-link :to="{name: 'Project', params:{project: projetos.id}}"><img :src="projetos.fotocapa" /></router-link>
+              <router-link :to="{name: 'Project', params:{project: projeto.id}}"><img :src="projeto.fotocapa" /></router-link>
             </div>
-            <p>{{projetos.nome}}</p>
+            <p>{{projeto.nome}}</p>
           </li>
           
         </ul>
@@ -32,6 +32,11 @@ export default {
   data() {
     return {
       showAbout: false
+    }
+  },
+  computed: {
+    filterProjetosHome: function(){
+        return this.api.filter(api => api.home === 'on')
     }
   },
   created() {

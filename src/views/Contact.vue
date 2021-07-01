@@ -80,9 +80,11 @@
           </div>
         </div>
       </div> -->
-
-      <div class="container-default">
-        <div v-for="conteudo in projetos.conteudo"  :key="conteudo.id"  class="info-contact">
+      <div class="loading" v-if="loading">
+        <lottie :options="defaultOptions" :height="150" :width="150"/>
+      </div> 
+      <div v-if="api" class="container-default">
+        <div v-for="conteudo in api.conteudo"  :key="conteudo.id"  class="info-contact">
           <div class="subTitle-contact">
             {{conteudo.titulobloco}}
           </div>
@@ -98,25 +100,47 @@
 <script>
 import TaduSvg from '@/components/TaduSvg.vue'
 import fetchData from '@/mixins/fetchData.js'
+import Lottie from '@/components/lottie.vue';
+import * as animationData from '@/assets/tadu.json';
 
 export default {
   name: 'Contact',
   props:['expShowMenu'],
   mixins: [fetchData],
+  data() {
+    return {
+      showAbout: false,
+      defaultOptions: {animationData: animationData.default}
+    }
+  },
   created() {
     this.fetchProjetos("/paginas/contato");
   },
   mounted() {
-    this.tlPageIn = this.$gsap.timeline()
-    this.tlPageIn
-      .from('.container-default', { 
-        opacity: 0,
-        y:-300, 
-        duration: .8, 
-        ease: 'power2.out' 
-      })
+
   },
-   beforeRouteLeave(to, from, next) {
+  watch: {
+    'api': 'pageIn'
+  },
+  methods: {
+    pageIn(){
+      setTimeout(() => {
+        this.tlPageIn = this.$gsap.timeline()
+        this.tlPageIn
+        .to('.container-default', {
+          duration: 0.1,
+          visibility: 'visible',
+        })
+        .from('.container-default', { 
+          opacity: 0,
+          y:-300, 
+          duration: .8, 
+          ease: 'power2.out' 
+        })
+      }, 0)        
+    }
+  },
+  beforeRouteLeave(to, from, next) {
     this.tlPageOut = this.$gsap.timeline()
     this.tlPageOut.to('.container-default', {
       opacity: 0,
@@ -129,7 +153,8 @@ export default {
     }) 
   },
   components: {
-    TaduSvg
+    TaduSvg,
+    'lottie': Lottie
   }
 }
 </script>

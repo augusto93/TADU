@@ -8,17 +8,17 @@
       <div class="loading" v-if="loading">
          <lottie :options="defaultOptions" :height="150" :width="150"/>
       </div>
-      <div v-if="projetos" class="container-gallery">
+      <div v-if="api" class="container-gallery">
         <div class="projects-header">
           <div class="title-dropdown">Showing — </div>  
           <Filters></Filters>        
         </div>
         <div class="grid-projects">
-          <div v-for="projetos in projetos"  :key="projetos.id" class="box-gallery">
+          <div v-for="projetos in api"  :key="projetos.id" class="box-gallery">
             <router-link :to="{name: 'Project', params:{project: projetos.id}}">
               <img :src="projetos.fotocapa" />
               <div class="hover-projects">
-                <div class="animation-hover">
+                <div class="animation-hover" :style="{ backgroundColor: [projetos.cor] }">
                   <div>{{projetos.nome}}</div>
                 </div>
               </div>
@@ -54,7 +54,7 @@ export default {
 
   },
   watch: {
-    'projetos': 'pageIn'
+    'api': 'pageIn'
   },
   updated() {
     this.$nextTick(() => {

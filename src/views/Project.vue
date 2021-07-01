@@ -3,8 +3,8 @@
 
     <router-link to="/"><TaduSvg v-if="expShowMenu" ></TaduSvg></router-link>
 
-    <div v-if="projetos" class="title-mobile">
-      <h3>{{ projetos.nome }}</h3>
+    <div v-if="api" class="title-mobile">
+      <h3>{{ api.nome }}</h3>
     </div>
 
     <div :class="{ buttonaboutprojectactive: showAbout }" class="container-button-about-project">
@@ -23,9 +23,9 @@
         <!-- <p>loading...</p> -->
       </div>
       </transition>
-      <div v-if="projetos" class="container-gallery2">
+      <div v-if="api" class="container-gallery2">
         <div class="project-header">
-          <div>{{ projetos.nome }}</div>
+          <div>{{ api.nome }}</div>
           <div class="prev-next">
             <div>Previous</div>
             <div>.</div>
@@ -33,32 +33,33 @@
           </div>
         </div>
         <div class="main-img-project">
-          <img :src="projetos.fotocapa" alt="">
+          <img :src="api.fotocapa" alt="">
         </div>
         <div class="about-project">
           <div class="about-project-bl1">
             
            
             <div v-if="!readMoreActivated" class="bloco1-about">
-              <p @click="openActivateReadMore"><span style="white-space: pre-wrap;">{{ projetos.descricao.slice(0, 180) }}</span><span class="more">...</span></p>
+              <p @click="openActivateReadMore"><span style="white-space: pre-wrap;">{{ api.descricao.slice(0, 180) }}</span><span class="more">...</span></p>
               <p class="more" @click="openActivateReadMore">+</p>
             </div>
             
             
             <div class="bloco2-about">
-              <p @click="closeActivateReadMore"><span style="white-space: pre-wrap;">{{ projetos.descricao }}</span></p>
+              <p @click="closeActivateReadMore"><span style="white-space: pre-wrap;">{{ api.descricao }}</span></p>
               <p @click="closeActivateReadMore">-</p>
             </div>
     
             
           </div>
           <div class="about-project-bl2">
-            <p><span style="white-space: pre-wrap;">{{ projetos.especificacao }}</span></p>
+            <p><span style="white-space: pre-wrap;">{{ api.especificacao }}</span></p>
           </div>
         </div>
         <div class="grid-imgs-project">
-          <div v-for="fotosgaleria in projetos.fotosgaleria.slice(0, 4)" :key="fotosgaleria.id" >
-            <img :src="fotosgaleria.url" :alt="fotosgaleria.description"> 
+          <!-- <div v-for="fotosgaleria in projetos.fotosgaleria.slice(0, 4)" :key="fotosgaleria.id" > -->
+          <div v-for="fotos in api.galeria" :key="fotos.foto_id" >
+            <img :src="fotos.foto" alt="Projetos"> 
           </div>
         </div>
         
@@ -79,7 +80,7 @@
     <div v-if="showAbout" class="box-about-project" >
       <div class="about-project-blcont">
         <div class="about-project-bl1-mob">
-          <p><span style="white-space: pre-wrap;">{{ projetos.descricao }}</span></p>
+          <p><span style="white-space: pre-wrap;">{{ api.descricao }}</span></p>
         </div>
         <div class="about-project-bl2-mob">
           <p>
@@ -121,7 +122,7 @@ export default {
     
   },
   watch: {
-    'projetos': 'pageIn'
+    'api': 'pageIn'
   },
   methods: {
     activateReadMore(){
