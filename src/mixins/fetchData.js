@@ -18,5 +18,13 @@ export default {
         // }, 5000)
       })
     },
+    fetchListaProjetos(url) {
+      this.listaProjetos = null;
+      fetch(`http://taduapilocal.local/wp-json/api${url}`)
+      .then(r => r.json())
+      .then(r => {
+          this.listaProjetos = r;
+      })
+    },
   }
 }

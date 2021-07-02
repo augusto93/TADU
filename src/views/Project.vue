@@ -27,9 +27,9 @@
         <div class="project-header">
           <div>{{ api.nome }}</div>
           <div class="prev-next">
-            <div>Previous</div>
+            <div @click="prevProject">Previous</div>
             <div>.</div>
-            <div>Next</div>
+            <div @click="nextProject">Next</div>
           </div>
         </div>
         <div class="main-img-project">
@@ -68,9 +68,9 @@
            <router-link to="/projects"> More projects</router-link>
           </div>
           <div class="prev-next">
-            <div>Previous</div>
+            <div @click="prevProject">Previous</div>
             <div>.</div>
-            <div>Next</div>
+            <div @click="nextProject">Next</div>
           </div>
         </div>
       </div>
@@ -117,12 +117,29 @@ export default {
   mixins: [fetchData],
   created() {
     this.fetchProjetos(`/projeto/${this.project}`);
+    this.fetchListaProjetos(`/projeto`);
   },
   mounted() {
     
   },
+  computed: {
+  routeIndex() {
+    let routes = this.listaProjetos
+    let index;
+    for (let i = 0; i < routes.length; i++) {
+      if (routes[i].id == this.project) {
+        index = i;
+        break;
+      }
+    }
+    return index;
+  },
+  },
   watch: {
-    'api': 'pageIn'
+     $route (){
+       this.fetchProjetos(`/projeto/${this.project}`);
+    },
+    'api': 'pageIn',
   },
   methods: {
     activateReadMore(){
@@ -178,6 +195,14 @@ export default {
         ease: 'power2.out' 
       })
       }, 0)        
+    },
+    prevProject(){
+      let nextproject = this.listaProjetos[this.routeIndex - 1];
+      this.$router.push({ name: 'Project', params:{project: nextproject.id}  });
+    },
+    nextProject(){
+      let nextproject = this.listaProjetos[this.routeIndex + 1];
+      this.$router.push({ name: 'Project', params:{project: nextproject.id}  });
     }
     
   },

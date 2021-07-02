@@ -672,6 +672,10 @@ footer {
   flex-direction: row;
 }
 
+.prev-next div {
+  cursor:pointer;
+}
+
 .prev-next div:nth-child(2) {
   margin:0 10px 0 10px;
 }
