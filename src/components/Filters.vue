@@ -1,16 +1,15 @@
 <template>
   <div class="filters">
     <div class="selected-filter">
-      <p class="target">All</p>
+      <p class="target">Todos</p>
       <div @click="clickDropdown" :class="{ dropdownActive: showDropdown }" class="seta-dropdown"></div>
     </div>
     <transition name="dropdown">
     <ul v-if="showDropdown">
-      <li>Bar & Restaurants</li>
-      <li>Corporate</li>
-      <li>Hotels</li>
-      <li>Residencies</li>
-      <li>Retails</li>
+      <li>Residencial</li>
+      <li>Comercial</li>
+      <li>Hotelaria</li>
+      <li>Outros</li>
     </ul>
     </transition>
   </div>

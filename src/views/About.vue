@@ -3,7 +3,8 @@
     
     <router-link to="/"><TaduSvg v-if="expShowMenu" ></TaduSvg></router-link>
     <div class="title-mobile">
-        <h3>{{ $route.name }}</h3>
+        <!-- <h3>{{ $route.name }}</h3> -->
+        <h3>Sobre</h3> 
     </div>
     <section class="all"> 
         <div class="loading" v-if="loading">
@@ -16,7 +17,7 @@
             </span>
           </div>
           <div class="subTitle-about">
-            Our team
+            Nossa equipe
           </div>
           <div class="img-about-flex">
             <div v-for="team in api.team"  :key="team.id"  class="img-about">

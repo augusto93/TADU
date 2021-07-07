@@ -12,22 +12,22 @@
           </div>
           <ul>
             <li @click="active = 'about'" :class="{active:active === 'about'}">
-                <router-link to="/about">About</router-link>
+                <router-link to="/about">Sobre</router-link>
             </li>
             <li @click="active = 'projects'" :class="{active:active === 'projects'}">
-                <router-link to="/projects">Projects</router-link>
+                <router-link to="/projects">Projetos</router-link>
             </li>
             <li @click="active = 'contact'" :class="{active:active === 'contact'}">
-                <router-link to="/contact">Contact</router-link>
+                <router-link to="/contact">Contato</router-link>
             </li>
           </ul>
         </nav>
-        <nav class="translate">
+        <!-- <nav class="translate">
           <ul>
             <li>PT</li>
             <li>EN</li>
           </ul>
-        </nav>
+        </nav> -->
       </div>
         
     </header>
@@ -44,17 +44,17 @@
     <transition name="fade">
     <div v-if="showMenu"  class="menu-mobile-full">
         <div class="box-menu-mobile">
-          <nav class="translate-mobile">
+          <!-- <nav class="translate-mobile">
             <ul>
               <li>PT</li>
               <li>EN</li>
             </ul>
-          </nav>
+          </nav> -->
           <nav class="menu-mobile">
             <ul>
-              <li v-on:click="showMenu = !showMenu"><router-link to="/about">About</router-link></li>
-              <li v-on:click="showMenu = !showMenu"><router-link to="/projects">Projects</router-link></li>
-              <li v-on:click="showMenu=  !showMenu"><router-link to="/Contact">Contact</router-link></li>
+              <li v-on:click="showMenu = !showMenu"><router-link to="/about">Sobre</router-link></li>
+              <li v-on:click="showMenu = !showMenu"><router-link to="/projects">Projetos</router-link></li>
+              <li v-on:click="showMenu=  !showMenu"><router-link to="/Contact">Contato</router-link></li>
             </ul>
           </nav>
         </div>

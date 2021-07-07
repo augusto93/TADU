@@ -27,9 +27,9 @@
         <div class="project-header">
           <div>{{ api.nome }}</div>
           <div class="prev-next">
-            <div @click="prevProject">Previous</div>
+            <div @click="prevProject">Anterior</div>
             <div>.</div>
-            <div @click="nextProject">Next</div>
+            <div @click="nextProject">Próximo</div>
           </div>
         </div>
         <div class="main-img-project">
@@ -65,12 +65,12 @@
         
         <div class="more-projects">
           <div>
-           <router-link to="/projects"> More projects</router-link>
+           <router-link to="/projects">Mais projetos</router-link>
           </div>
           <div class="prev-next">
-            <div @click="prevProject">Previous</div>
+            <div @click="prevProject">Anterior</div>
             <div>.</div>
-            <div @click="nextProject">Next</div>
+            <div @click="nextProject">Próximo</div>
           </div>
         </div>
       </div>

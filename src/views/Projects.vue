@@ -2,7 +2,8 @@
   <div class="projects">
     <router-link to="/"><TaduSvg v-if="expShowMenu" ></TaduSvg></router-link>
     <div class="title-mobile">
-      <h3>{{ $route.name }}</h3>
+      <!-- <h3>{{ $route.name }}</h3> -->
+      <h3>Projetos</h3>
     </div>
     <section class="all">
       <div class="loading" v-if="loading">
@@ -10,7 +11,7 @@
       </div>
       <div v-if="api" class="container-gallery">
         <div class="projects-header">
-          <div class="title-dropdown">Showing — </div>  
+          <div class="title-dropdown">Exibindo — </div>  
           <Filters></Filters>        
         </div>
         <div class="grid-projects">

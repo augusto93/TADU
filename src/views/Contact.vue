@@ -3,7 +3,8 @@
     
     <router-link to="/"><TaduSvg v-if="expShowMenu" ></TaduSvg></router-link>
     <div class="title-mobile">
-      <h3>{{ $route.name }}</h3>
+      <!-- <h3>{{ $route.name }}</h3> -->
+      <h3>Contato</h3>
     </div>
     <section class="all">        
       <!-- <div class="container-default">
@@ -86,10 +87,12 @@
       <div v-if="api" class="container-default">
         <div v-for="conteudo in api.conteudo"  :key="conteudo.id"  class="info-contact">
           <div class="subTitle-contact">
-            {{conteudo.titulobloco}}
+          <p>{{conteudo.titulobloco}}</p>
           </div>
           <div>
-            {{conteudo.textobloco}}
+            <span style="white-space: pre-wrap;">
+            <p>{{conteudo.textobloco}}</p>
+            </span>
           </div>
         </div>
       </div>
