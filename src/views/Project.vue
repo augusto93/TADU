@@ -27,9 +27,9 @@
         <div class="project-header">
           <div>{{ api.nome }}</div>
           <div class="prev-next">
-            <div @click="prevProject">Anterior</div>
+            <div class="prev" ref="prev" @click="prevProject">Anterior</div>
             <div>.</div>
-            <div @click="nextProject">Próximo</div>
+            <div class="next" ref="next" @click="nextProject">Próximo</div>
           </div>
         </div>
         <div class="main-img-project">
@@ -68,9 +68,9 @@
            <router-link to="/projects">Mais projetos</router-link>
           </div>
           <div class="prev-next">
-            <div @click="prevProject">Anterior</div>
+            <div class="prev" ref="prev" @click="prevProject">Anterior</div>
             <div>.</div>
-            <div @click="nextProject">Próximo</div>
+            <div class="next" ref="next" @click="nextProject">Próximo</div>
           </div>
         </div>
       </div>
@@ -119,25 +119,28 @@ export default {
     this.fetchProjetos(`/projeto/${this.project}`);
     this.fetchListaProjetos(`/projeto`);
   },
-  mounted() {
-    
+  mounted() { 
+    // setTimeout(() => {
+    //   console.log(this.routeIndex)
+    // }, 500)  
   },
   computed: {
-  routeIndex() {
-    let routes = this.listaProjetos
-    let index;
-    for (let i = 0; i < routes.length; i++) {
-      if (routes[i].id == this.project) {
-        index = i;
-        break;
+    routeIndex() {
+      let routes = this.listaProjetos
+      let index;
+      for (let i = 0; i < routes.length; i++) {
+        if (routes[i].id == this.project) {
+          index = i;
+          break;
+        }
       }
-    }
-    return index;
-  },
+      return index;
+    },
   },
   watch: {
      $route (){
        this.fetchProjetos(`/projeto/${this.project}`);
+       this.fetchListaProjetos(`/projeto`);
     },
     'api': 'pageIn',
   },
@@ -197,14 +200,56 @@ export default {
       }, 0)        
     },
     prevProject(){
-      let nextproject = this.listaProjetos[this.routeIndex - 1];
-      this.$router.push({ name: 'Project', params:{project: nextproject.id}  });
+      let prevproject = this.listaProjetos[this.routeIndex - 1];
+      if(this.routeIndex === 0){
+        console.log('testeacabou')
+      } else {
+        this.tlPageOut = this.$gsap.timeline();
+        this.tlPageOut.to('.container-gallery2', {
+          opacity: 0,
+          y:300, 
+          duration: .3, 
+          ease: 'power1.in',
+          onComplete: () => {
+           this.$router.push({ name: 'Project', params:{project: prevproject.id}  });
+          }, 
+        })
+      }
     },
     nextProject(){
       let nextproject = this.listaProjetos[this.routeIndex + 1];
-      this.$router.push({ name: 'Project', params:{project: nextproject.id}  });
-    }
-    
+      let lastItem = this.listaProjetos.length -1
+      if(this.routeIndex === lastItem) {
+       console.log("acabou")
+      }else {
+        this.tlPageOut = this.$gsap.timeline();
+        this.tlPageOut.to('.container-gallery2', {
+          opacity: 0,
+          y:300, 
+          duration: .3, 
+          ease: 'power1.in',
+          onComplete: () => {
+           this.$router.push({ name: 'Project', params:{project: nextproject.id}  });
+          }, 
+        })  
+      }
+    },
+    firstAndLastProject(){
+      let lastItem = this.listaProjetos.length -1;
+      let prev = document.querySelectorAll(".prev");
+      let next = document.querySelectorAll(".next");
+      if(this.routeIndex === 0){
+        for (let i = 0; i < prev.length; i++) {
+          prev[i].style.pointerEvents = "none";
+        }
+        console.log('primeira página')
+      } else if(this.routeIndex === lastItem) {
+        for (let i = 0; i < next.length; i++) {
+          next[i].style.pointerEvents = "none";
+        }
+        console.log('última página')
+      }
+    },
   },
   updated() {
     this.$nextTick(() => {

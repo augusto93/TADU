@@ -3,6 +3,7 @@ export default {
     return {
       loading: true,
       api: null,
+      listaProjetos: null,
     };
   },
   methods: {
@@ -24,6 +25,7 @@ export default {
       .then(r => r.json())
       .then(r => {
           this.listaProjetos = r;
+          this.firstAndLastProject();
       })
     },
   }
