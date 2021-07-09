@@ -1,15 +1,16 @@
 <template>
   <div class="filters">
     <div class="selected-filter">
-      <p class="target">Todos</p>
+      <p class="allfilter">{{this.$parent.categorias.charAt(0).toUpperCase() + this.$parent.categorias.substring(1)}}</p>
       <div @click="clickDropdown" :class="{ dropdownActive: showDropdown }" class="seta-dropdown"></div>
     </div>
     <transition name="dropdown">
     <ul v-if="showDropdown">
-      <li>Residencial</li>
-      <li>Comercial</li>
-      <li>Hotelaria</li>
-      <li>Outros</li>
+      <li @click="setFilter('todos')">Todos</li>
+      <li @click="setFilter('residencial')">Residencial</li>
+      <li @click="setFilter('comercial')">Comercial</li>
+      <li @click="setFilter('hotelaria')">Hotelaria</li>
+      <li @click="setFilter('outros')">Outros</li>
     </ul>
     </transition>
   </div>
@@ -20,7 +21,7 @@ export default {
   name: 'Filters',
   data() {
     return {
-      showDropdown:false
+      showDropdown:false,
     }
   },
   mounted() {
@@ -38,6 +39,9 @@ export default {
       } else {
         this.showDropdown = false
       }
+    },
+    setFilter(filter){
+      this.$parent.setFilter(filter);
     }
   },
 }
@@ -64,7 +68,7 @@ export default {
     transition: color .3s ease;
   }
 
-  .filters ul li.target, .filters ul li:hover {
+  .filters ul li:hover {
     color:#FFFFFF;
   }
 
@@ -103,6 +107,9 @@ export default {
   .dropdown-enter, .dropdown-leave-to /* .fade-leave-active below version 2.1.8 */ {
     opacity: 0;
     max-height: 0px;
+  }
+  .allfilter {
+    color:#FFFFFF;
   }
 
 

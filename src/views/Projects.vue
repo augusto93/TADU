@@ -14,7 +14,7 @@
           <div class="title-dropdown">Exibindo — </div>  
           <Filters></Filters>        
         </div>
-        <div class="grid-projects">
+        <!-- <div class="grid-projects">
           <div v-for="projetos in api"  :key="projetos.id" class="box-gallery">
             <router-link :to="{name: 'Project', params:{project: projetos.id}}">
               <img :src="projetos.fotocapa" />
@@ -25,6 +25,21 @@
               </div>
             </router-link>
           </div>
+        </div> -->
+
+        <div class="grid-projects2">
+          <transition-group class="grid-trans" name="fade">
+          <div class="box-gallery" :key="projetos.id" v-for="projetos in filteredProjects"   >
+            <router-link :to="{name: 'Project', params:{project: projetos.id}}">
+              <img :src="projetos.fotocapa" />
+              <div class="hover-projects">
+                <div class="animation-hover" :style="{ backgroundColor: [projetos.cor] }">
+                  <div>{{projetos.nome}}</div>
+                </div>
+              </div>
+            </router-link>
+          </div>
+          </transition-group>
         </div>
       </div>
     </section>
@@ -36,16 +51,30 @@ import TaduSvg from '@/components/TaduSvg.vue'
 import fetchData from '@/mixins/fetchData.js'
 import Filters from '../components/Filters.vue'
 import Lottie from '@/components/lottie.vue';
-import * as animationData from '@/assets/tadu.json';
+import * as animationData from '@/assets/tadu.json'; 
 
 export default {
   name: 'Projects',
-  mixins: [fetchData],
+  mixins: [fetchData, Filters],
   props: ['project', 'expShowMenu'],
   data() {
     return {
       showAbout: false,
-      defaultOptions: {animationData: animationData.default}
+      defaultOptions: {animationData: animationData.default},
+      categorias: 'todos',
+    }
+  },
+  computed: {
+    filteredProjects: function() {
+        let categorias = this.categorias;
+        
+        if(categorias === "todos") {
+          return this.api
+        } else {
+          return this.api.filter(function(projetos) {
+            return projetos.categoria === categorias;
+          });
+        }
     }
   },
   created() {
@@ -55,7 +84,7 @@ export default {
 
   },
   watch: {
-    'api': 'pageIn'
+    'api': 'pageIn',
   },
   updated() {
     this.$nextTick(() => {
@@ -94,7 +123,11 @@ export default {
           ease: 'power2.out' 
         })
       }, 0)        
-    }
+    },
+    
+    setFilter(filter) {
+			this.categorias = filter;
+		}
   },
   beforeRouteLeave(to, from, next) {
     this.tlPageOut = this.$gsap.timeline()
@@ -117,5 +150,31 @@ export default {
 </script>
 
 <style lang="scss">
+
+.grid-trans{
+  display:flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.grid-trans .box-gallery{
+  width:50%;
+  max-height: 394.5px;
+  transition: all .35s ease-in-out;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active em versões anteriores a 2.1.8 */ {
+  opacity: 0;
+}
+
+@media screen and (max-width: 1024px) {
+  .grid-trans .box-gallery{
+    width:100%;
+    max-height: none;
+  }
+}
 
 </style>

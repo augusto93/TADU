@@ -103,10 +103,12 @@ export default {
 }
 
 .img-about-flex {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  // display: flex;
+  // flex-direction: row;
+  // flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(288px, 420px));
+  // grid-template-columns: auto auto auto;
 }
 
 .text-about {
@@ -123,6 +125,14 @@ export default {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  overflow: hidden;
+}
+
+.img-about img{
+  max-width: 216px;
+  max-height: 330px;
+  min-height: 330px;
+  object-fit: cover;
 }
 
 .img-about div {

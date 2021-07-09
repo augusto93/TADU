@@ -346,7 +346,7 @@ export default {
   z-index: 97;
   background: rgba(0, 0, 0, 0.92);
   top:65px;
-  margin:120px 0 0 0;
+  margin:105px 0 0 0;
 }
 
 .title-mobile h3 {
@@ -451,6 +451,10 @@ footer {
   grid-gap: 40px;
 }
 
+.grid-projects2 {
+  display: flex;
+}
+
 .box-gallery {
   position: relative;
   /* height: 100%; */
@@ -517,9 +521,12 @@ footer {
   width: 100%;
   padding: 0 0 40px 0;
   margin: 0 0 -7px 0;
+  overflow: hidden;
 }
 .main-img-project img {
   width: 100%;
+  max-height: 775px;
+  object-fit: cover;
 }
 .about-project {
   position: relative;
@@ -567,14 +574,18 @@ footer {
 }
 .grid-imgs-project div {
   grid-column: span 1;
+  max-height: 382.39px;
 }
 
-.grid-imgs-project div:nth-child(2){
+.grid-imgs-project div:nth-child(4n+6), .grid-imgs-project div:nth-child(2) {
   grid-row: span 2;
+  max-height: 804px;
+  min-height: 804px;
 }
 
-.grid-imgs-project div:nth-child(4){
+.grid-imgs-project div:nth-child(4n){
   grid-column: span 2;
+  max-height: 775px;
 }
 
 .grid-imgs-project div img {
@@ -720,6 +731,11 @@ footer {
   .main-imgs ul li {
   margin:0 0 3vw 0;
   }
+  .main-imgs img {
+  height: 80vw;  
+  max-height: unset;
+  min-height:unset;
+}
 }
 @media screen and (max-width: 1024px) {
   header div.box-menu nav ul {
@@ -737,6 +753,22 @@ footer {
   .grid-projects{
     // grid-auto-rows: 620px;
   }
+  .grid-imgs-project{
+    grid-template-columns: repeat(1, 100%);
+  }
+
+  .grid-imgs-project div,
+  .grid-imgs-project div:nth-child(4n+6),
+  .grid-imgs-project div:nth-child(2),
+  .grid-imgs-project div:nth-child(4n) {
+    grid-column: span 1;
+    grid-row: span 1;
+    max-height: unset;
+    min-height: unset;
+    height: 90vw;
+  }
+
+
   .title-mobile {
     display: flex;
   }
@@ -784,11 +816,17 @@ footer {
   .img-about div {
     width: 50%;
   }
+  .main-imgs img {
+  height: 90vw;  
+  }
 }
 
 @media screen and (max-width: 414px) {
   .grid-projects {
     // grid-auto-rows: 250px;
+  }
+  .main-imgs img {
+  height: 95vw;  
   }
 }
 
@@ -796,6 +834,10 @@ footer {
   .grid-projects {
     // grid-auto-rows: 225px;
   }
+  .main-imgs img {
+  height: 100vw;  
+  }
+  
 }
 
 @media screen and (max-width: 320px) {
