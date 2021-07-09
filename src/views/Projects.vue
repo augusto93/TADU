@@ -28,7 +28,8 @@
         </div> -->
 
         <div class="grid-projects2">
-          <transition-group class="grid-trans" name="fade">
+          <!-- <transition-group class="grid-trans" name="fade"> -->
+          <div class="grid-trans">
           <div class="box-gallery" :key="projetos.id" v-for="projetos in filteredProjects"   >
             <router-link :to="{name: 'Project', params:{project: projetos.id}}">
               <img :src="projetos.fotocapa" />
@@ -39,8 +40,10 @@
               </div>
             </router-link>
           </div>
-          </transition-group>
+          </div>
+          <!-- </transition-group> -->
         </div>
+
       </div>
     </section>
   </div>
@@ -126,7 +129,22 @@ export default {
     },
     
     setFilter(filter) {
-			this.categorias = filter;
+      this.tlFilter = this.$gsap.timeline()
+      this.tlFilter.to('.grid-trans', {
+        opacity: 0,
+        y:300, 
+        duration: .3,
+        ease: 'power1.in',
+        onComplete: () => {
+          this.categorias = filter;
+        }, 
+      })
+      .to('.grid-trans', {
+        opacity: 1,
+        y:0, 
+        duration: .5, 
+        ease: 'power1.out',
+      })
 		}
   },
   beforeRouteLeave(to, from, next) {
@@ -155,19 +173,37 @@ export default {
   display:flex;
   flex-direction: row;
   flex-wrap: wrap;
+  gap:30px;
 }
 
 .grid-trans .box-gallery{
-  width:50%;
+  width:49%;
+  max-width: 625px;
   max-height: 394.5px;
-  transition: all .35s ease-in-out;
 }
 
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .5s;
+.grid-trans .box-gallery:nth-child(3n) {
+  width: 100%;
+  max-width: 1280px;
+  max-height: 775px;
 }
-.fade-enter, .fade-leave-to /* .fade-leave-active em versões anteriores a 2.1.8 */ {
-  opacity: 0;
+
+// .fade-enter-active, .fade-leave-active {
+//   transition:all .1;
+// }
+// .fade-enter, .fade-leave-to /* .fade-leave-active em versões anteriores a 2.1.8 */ {
+//   opacity: 0;
+//   transform: scale(0.9);
+// }
+
+
+
+@media screen and (max-width: 1280px) {
+  .grid-trans .box-gallery{
+    width:100%;
+    max-width: 1280px;
+    max-height: none;
+  }
 }
 
 @media screen and (max-width: 1024px) {

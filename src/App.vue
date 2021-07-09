@@ -452,7 +452,7 @@ footer {
 }
 
 .grid-projects2 {
-  display: flex;
+  // display: flex;
 }
 
 .box-gallery {
@@ -525,6 +525,7 @@ footer {
 }
 .main-img-project img {
   width: 100%;
+  height:100%;
   max-height: 775px;
   object-fit: cover;
 }
@@ -774,6 +775,8 @@ footer {
   }
   .main-img-project {
     padding: 0 0 3vw 0;
+    height:90vw;
+    margin:unset;
   }
   .about-project {
     display: none;
@@ -788,7 +791,7 @@ footer {
     display: flex;
   }
   .box-menu-mobile {
-    margin: 0 0 60px 10%;
+    margin: 0 0 75px 10%;
   }
   .projects-header {
     top:110px;

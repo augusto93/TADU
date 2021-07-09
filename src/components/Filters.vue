@@ -42,6 +42,12 @@ export default {
     },
     setFilter(filter){
       this.$parent.setFilter(filter);
+      let userViewHeight = window.innerWidth;
+      if (userViewHeight >= 1024) {
+        this.showDropdown = true
+      } else {
+        this.showDropdown = false
+      }
     }
   },
 }
