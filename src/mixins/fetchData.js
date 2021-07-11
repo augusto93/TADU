@@ -10,7 +10,8 @@ export default {
     fetchProjetos(url) {
       this.loading = true;
       this.api = null;
-      fetch(`http://taduapilocal.local/wp-json/api${url}`)
+      // fetch(`http://taduapilocal.local/wp-json/api${url}`)
+      fetch(`https://www.taduarq.com/api/wp-json/api${url}`)
       .then(r => r.json())
       .then(r => {
         // setTimeout(() => {
@@ -21,7 +22,8 @@ export default {
     },
     fetchListaProjetos(url) {
       this.listaProjetos = null;
-      fetch(`http://taduapilocal.local/wp-json/api${url}`)
+      // fetch(`http://taduapilocal.local/wp-json/api${url}`)
+      fetch(`https://www.taduarq.com/api/wp-json/api${url}`)
       .then(r => r.json())
       .then(r => {
           this.listaProjetos = r;

@@ -4,7 +4,7 @@
     <section class="all">
       <div class="main-imgs">
         <div style="margin: -150px 0 0 0;" v-if="loading">
-          <p>loading...</p>
+          <p>carregando...</p>
         </div>
         <ul v-if="api">
           <li v-for="projeto in filterProjetosHome" :key="projeto.id">
