@@ -1,6 +1,6 @@
 <template>
   <div class="projects">
-    <router-link to="/"><TaduSvg v-if="expShowMenu" ></TaduSvg></router-link>
+    <router-link @click.native="taduMobMenu" to="/"><TaduSvg v-if="expShowMenu" ></TaduSvg></router-link>
     <div class="title-mobile">
       <!-- <h3>{{ $route.name }}</h3> -->
       <h3>Projetos</h3>
@@ -145,7 +145,16 @@ export default {
         duration: .5, 
         ease: 'power1.out',
       })
-		}
+		},
+    taduMobMenu() {
+      this.tlPageOut = this.$gsap.timeline()
+      this.tlPageOut.to('.tadu', {
+      opacity: 0,
+      ease: 'power1.in',
+      y: -100,
+      duration: 0.3
+      }) 
+    }
   },
   beforeRouteLeave(to, from, next) {
     this.tlPageOut = this.$gsap.timeline()

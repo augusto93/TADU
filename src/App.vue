@@ -52,9 +52,9 @@
           </nav> -->
           <nav class="menu-mobile">
             <ul>
-              <li v-on:click="showMenu = !showMenu"><router-link to="/about">Sobre</router-link></li>
-              <li v-on:click="showMenu = !showMenu"><router-link to="/projects">Projetos</router-link></li>
-              <li v-on:click="showMenu=  !showMenu"><router-link to="/Contact">Contato</router-link></li>
+              <li @click="closeMenu"><router-link to="/about">Sobre</router-link></li>
+              <li @click="closeMenu"><router-link to="/projects">Projetos</router-link></li>
+              <li @click="closeMenu"><router-link to="/Contact">Contato</router-link></li>
             </ul>
           </nav>
         </div>
@@ -146,6 +146,22 @@ export default {
        }else {
          this.stickyActive = false
        }
+    },
+    closeMenu: function() {
+      if(this.showMenu === true) {
+        this.tlPageOut = this.$gsap.timeline()
+        this.tlPageOut.to('.tadu', {
+        opacity: 0,
+        ease: 'power1.in',
+        y: -100,
+        duration: 0.3,
+          onComplete: () => {
+            this.showMenu = !this.showMenu
+          },
+        }) 
+      } else {
+        this.showMenu = !this.showMenu
+      }
     }
   }
 }
@@ -376,7 +392,7 @@ footer {
 
 .box-menu-mobile .menu-mobile ul li {
   font-size: 1rem;
-  margin:0 0 2px 0;
+  margin:0 0 4px 0;
 }
 
 .box-menu-mobile .translate-mobile {

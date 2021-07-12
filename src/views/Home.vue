@@ -89,7 +89,7 @@ export default {
         onComplete: () => {
           next()
         },
-    },"<")
+    },"<") 
   },  
   components: {
     TaduSvg

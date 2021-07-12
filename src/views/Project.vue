@@ -1,7 +1,7 @@
 <template>
   <div>
 
-    <router-link to="/"><TaduSvg v-if="expShowMenu" ></TaduSvg></router-link>
+    <router-link @click.native="taduMobMenu" to="/"><TaduSvg v-if="expShowMenu" ></TaduSvg></router-link>
 
     <div v-if="api" class="title-mobile">
       <h3>{{ api.nome }}</h3>
@@ -250,6 +250,15 @@ export default {
         console.log('última página')
       }
     },
+    taduMobMenu() {
+      this.tlPageOut = this.$gsap.timeline()
+      this.tlPageOut.to('.tadu', {
+      opacity: 0,
+      ease: 'power1.in',
+      y: -100,
+      duration: 0.3
+      }) 
+    }
   },
   updated() {
     this.$nextTick(() => {
