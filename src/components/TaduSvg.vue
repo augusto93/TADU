@@ -1,6 +1,7 @@
 <template>
   <div class="tadu">
-    <svg version="1.1" class="svg" id="Logo" xmlns="http://www.w3.org/2000/svg" x="0" y="0" viewBox="0 0 199.4 232.8" xml:space="preserve" ref="teste">
+    <!-- <svg version="1.1" class="svg" id="Logo" xmlns="http://www.w3.org/2000/svg" x="0" y="0" viewBox="0 0 199.4 232.8" xml:space="preserve" ref="teste"> -->
+    <svg version="1.1" class="svg" id="Logo" xmlns="http://www.w3.org/2000/svg" x="0" y="0" viewBox="0 0 191 232.8" xml:space="preserve" ref="teste">
       <!-- <g class="st0">
         <path class="st1" d="M83 220.5c0-.1 0-.3.1-.4l2.6-7.1c.2-.5.4-.7.9-.7s.7.2.9.7l2.6 7.1c0 .1.1.3.1.4 0 .3-.2.5-.5.5-.2 0-.5-.1-.6-.5l-.7-2.1h-3.6l-.7 2.1c-.1.4-.4.5-.6.5-.3 0-.5-.2-.5-.5zm2.2-3.1H88l-1.4-4-1.4 4zM91.9 220.5v-5.8c0-.3.2-.5.5-.5s.5.2.5.5v.7c.5-.8 1.1-1.2 2-1.2s1.5.5 1.5.9c0 .2-.1.5-.5.5-.5 0-.7-.5-1.3-.5-.7 0-1.3.7-1.8 1.4v4c0 .3-.2.5-.5.5s-.4-.2-.4-.5zM97.1 217.4c0-.3.2-.6.6-.6h2.9c.4 0 .6.2.6.6 0 .3-.2.6-.6.6h-2.9c-.4 0-.6-.2-.6-.6z"/>
       </g>
@@ -12,7 +13,7 @@
       </g> -->
        <text x="78" y="214" font-size="6px" fill="white" >Ar—</text>
        <text x="124" y="168" font-size="6px" fill="white" >qui—</text>
-       <text x="158" y="118" font-size="6px" fill="white" >tetura</text>
+       <text x="158" y="118" font-size="6px" fill="white" >tos</text>
       <path class="st1" d="M37.1 136.8l4.7 12H31.3L64 232.7H48.4l-32.7-83.9h-11l-4.7-12h37.1zM118.7 190.2H103l-6.6-12H84.7l2.7 12H71.7L50 94.3h15.7l53 95.9zm-28.9-23.9l-13.3-24 5.4 24h7.9zM158.6-.1L190 80.5c3.4 8.8-3.1 15.4-14.6 16-14.2.8-23.2-5.3-27.1-15.9L116.8 0h15.7l31.4 80.6c.9 2.2 3.9 4 6.8 4s4.5-1.8 3.6-4L142.9 0l15.7-.1zM124.4 67l24.9 63.9c3.4 8.8-3.1 16-14.6 16h-20.9L76.4 51.1h20.9c11.5-.1 23.7 7.1 27.1 15.9zm-15.6 0c-.9-2.2-3.9-4-6.8-4h-5.2l28 71.9h5.2c2.9 0 4.5-1.8 3.6-4L108.8 67z"/>
     </svg>   
   </div>
@@ -20,7 +21,7 @@
 
 <script>
 export default {
-  name: 'TaduSvg'
+  name: 'TaduSvg',
 }
 </script>
 

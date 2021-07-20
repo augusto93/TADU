@@ -1,6 +1,9 @@
 <template>
   <div>
     <TaduSvg></TaduSvg>
+    
+    <lottie :options="defaultOptions2" class="tadu-start" />
+  
     <section class="all">
       <div class="main-imgs">
         <div style="margin: -150px 0 0 0;" v-if="loading">
@@ -24,6 +27,8 @@
 // @ is an alias to /src
 import TaduSvg from '@/components/TaduSvg.vue'
 import fetchData from '@/mixins/fetchData.js'
+import Lottie from '@/components/lottie.vue'
+import * as animationDataOpening from '@/assets/crop_tadu.json';
 
 export default {
   name: 'Home',
@@ -31,7 +36,8 @@ export default {
   mixins: [fetchData],
   data() {
     return {
-      showAbout: false
+      showAbout: false,
+      defaultOptions2: {animationData: animationDataOpening.default, loop: false}
     }
   },
   computed: {
@@ -63,13 +69,20 @@ export default {
       let heightadjust = userViewHeight - 100;
 
       if (userViewHeight - 60 > taduDiv) {
-        console.log("Visualização da logo normal 50%");
+        // console.log("Visualização da logo normal 50%");
         document.querySelector(".svg").style.border = "none";
         document.querySelector(".svg").style.width = "50%";
+        document.querySelector(".tadu-start svg").style.border = "none";
+        document.querySelector(".tadu-start svg").style.width = "50%";
+        document.querySelector(".tadu-start svg").style.height = "unset";
+        // document.querySelector(".svganim").style.width = "50%";
       } else {
-        console.log("Tamanho da logo ajustado");
+        // console.log("Tamanho da logo ajustado");
         document.querySelector(".svg").style.height = heightadjust;
         document.querySelector(".svg").style.width = "initial";
+        document.querySelector(".tadu-start svg").style.height = heightadjust;
+        document.querySelector(".tadu-start svg").style.width = "initial";
+        // document.querySelector(".svganim").style.width = "initial";
       }
     }
   },
@@ -92,7 +105,8 @@ export default {
     },"<") 
   },  
   components: {
-    TaduSvg
+    TaduSvg,
+    'lottie': Lottie
   }
 }
 </script>

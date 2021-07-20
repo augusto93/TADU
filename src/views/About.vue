@@ -36,8 +36,8 @@
 <script>
 import TaduSvg from '@/components/TaduSvg.vue'
 import fetchData from '@/mixins/fetchData.js'
-import Lottie from '@/components/lottie.vue';
-import * as animationData from '@/assets/tadu.json';
+import Lottie from '@/components/lottie.vue'
+import * as animationDataLoading from '@/assets/tadu.json'
 
 export default {
   name: 'About',
@@ -46,7 +46,7 @@ export default {
   data() {
     return {
       showAbout: false,
-      defaultOptions: {animationData: animationData.default}
+      defaultOptions: {animationData: animationDataLoading.default}
     }
   },
   created() {

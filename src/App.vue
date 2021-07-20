@@ -322,6 +322,20 @@ export default {
     align-self: flex-end;
     width: 50%;
   }
+  .tadu-start {
+    position: fixed;
+    top: 60px;
+    width: 90% !important;
+    max-width: 1280px;
+    z-index: 98;
+    display: flex;
+    flex-direction: column;
+  }
+  .tadu-start svg {
+    position: absolute;
+    top:0;
+    align-self: flex-end;
+  }
   .main-imgs {
   position: relative;
   width: 80%;
@@ -872,7 +886,16 @@ footer {
     top: 40px;
     margin: 0 5% 0 5%;
   }
+  .tadu-start {
+    top: 40px;
+    margin: 0 5% 0 5% !important;
+  }
   .tadu svg {
+    width: 90% !important;
+    align-self: center;
+    margin: 0;
+  }
+  .tadu-start svg {
     width: 90% !important;
     align-self: center;
     margin: 0;

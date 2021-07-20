@@ -11,7 +11,7 @@
       </div>
       <div v-if="api" class="container-gallery">
         <div class="projects-header">
-          <div class="title-dropdown">Exibindo — </div>  
+          <!-- <div class="title-dropdown">Exibindo — </div>   -->
           <Filters></Filters>        
         </div>
         <!-- <div class="grid-projects">
