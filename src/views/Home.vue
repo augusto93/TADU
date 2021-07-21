@@ -1,9 +1,9 @@
 <template>
   <div>
+
+    <lottie :options="defaultOptions2" class="tadu-start" />    
     <TaduSvg></TaduSvg>
     
-    <lottie :options="defaultOptions2" class="tadu-start" />
-  
     <section class="all">
       <div class="main-imgs">
         <div style="margin: -150px 0 0 0;" v-if="loading">
@@ -55,11 +55,22 @@ export default {
       });
     this.tlPageIn = this.$gsap.timeline()
     this.tlPageIn
-      .from('.tadu', { 
+      .from('.tadu-start',{
         opacity: 0,
-        y:-100, 
+        y:-100,  
         duration: .8, 
         ease: 'power2.out' 
+      })
+      .from('.tadu', { 
+        opacity: 0,
+        delay: 1.5,
+        // y:-100,  
+        duration: .6, 
+        ease: 'power2.out' 
+      },"<")
+      .to('.tadu-start', {
+        visibility: "hidden",
+        duration: .1,
       })  
   },
   methods: {
