@@ -56,9 +56,13 @@
             <p><span style="white-space: pre-wrap;">{{ api.especificacao }}</span></p>
           </div>
         </div>
-        <div class="grid-imgs-project">
-          <!-- <div v-for="fotosgaleria in projetos.fotosgaleria.slice(0, 4)" :key="fotosgaleria.id" > -->
+        <!-- <div class="grid-imgs-project">
           <div v-for="fotos in api.galeria" :key="fotos.foto_id" >
+            <img :src="fotos.foto" alt="Projetos"> 
+          </div>
+        </div> -->
+        <div class="grid-imgs-project-2">
+          <div v-for="fotos in api.galeria" :key="fotos.foto_id">
             <img :src="fotos.foto" alt="Projetos"> 
           </div>
         </div>
@@ -84,11 +88,7 @@
         </div>
         <div class="about-project-bl2-mob">
           <p>
-            <span style="white-space: pre-wrap;">
-            Floor: 1<br />
-            Floor area : 77.25 m²<br />
-            Structure : SRC (CFT), RC<br />
-            Completion: 03/2020
+            <span style="white-space: pre-wrap;"><span style="white-space: pre-wrap;">{{ api.especificacao }}</span>
             </span>
           </p>
         </div>
@@ -120,9 +120,7 @@ export default {
     this.fetchListaProjetos(`/projeto`);
   },
   mounted() { 
-    // setTimeout(() => {
-    //   console.log(this.routeIndex)
-    // }, 500)  
+    window.addEventListener("resize", this.marginGrid, false)
   },
   computed: {
     routeIndex() {
@@ -145,6 +143,14 @@ export default {
     'api': 'pageIn',
   },
   methods: {
+    marginGrid() {
+      let gridTransWidth = document.querySelector(".grid-imgs-project-2").offsetWidth;
+      let treePercent = gridTransWidth*0.02
+      let allDivs =  document.querySelectorAll(".grid-imgs-project-2 div");
+      allDivs.forEach((e) => {
+        e.style.marginTop = treePercent + "px"
+      });
+    },
     activateReadMore(){
       this.readMoreActivated = !this.readMoreActivated;
     },
@@ -202,7 +208,7 @@ export default {
     prevProject(){
       let prevproject = this.listaProjetos[this.routeIndex - 1];
       if(this.routeIndex === 0){
-        console.log('testeacabou')
+        // console.log('testeacabou')
       } else {
         this.tlPageOut = this.$gsap.timeline();
         this.tlPageOut.to('.container-gallery2', {
@@ -220,7 +226,7 @@ export default {
       let nextproject = this.listaProjetos[this.routeIndex + 1];
       let lastItem = this.listaProjetos.length -1
       if(this.routeIndex === lastItem) {
-       console.log("acabou")
+      //  console.log("acabou")
       }else {
         this.tlPageOut = this.$gsap.timeline();
         this.tlPageOut.to('.container-gallery2', {
@@ -242,12 +248,12 @@ export default {
         for (let i = 0; i < prev.length; i++) {
           prev[i].style.pointerEvents = "none";
         }
-        console.log('primeira página')
+        // console.log('primeira página')
       } else if(this.routeIndex === lastItem) {
         for (let i = 0; i < next.length; i++) {
           next[i].style.pointerEvents = "none";
         }
-        console.log('última página')
+        // console.log('última página')
       }
     },
     taduMobMenu() {
@@ -262,7 +268,7 @@ export default {
   },
   updated() {
     this.$nextTick(() => {
-      
+      this.marginGrid()
     })
   },
   beforeRouteLeave(to, from, next) {

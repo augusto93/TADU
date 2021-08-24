@@ -740,6 +740,33 @@ footer {
   font-size: 0.5rem;
 }
 
+.grid-imgs-project-2 {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width:100%;
+}
+
+.grid-imgs-project-2 div {
+  width:49%
+}
+
+.grid-imgs-project-2 div img {
+  width:100%;
+  height: 100%;
+  object-fit: cover;
+} 
+
+.grid-imgs-project-2 div:nth-child(3n){
+  width:100%;
+}  
+
+.grid-imgs-project-2 div:first-child, .grid-imgs-project-2 div:nth-child(2){
+  margin-top:0 !important;
+}  
+
+
 @media screen and (max-width: 1280px) {
   section.all {
     width: 90%;
@@ -824,7 +851,7 @@ footer {
     margin: 0 0 75px 10%;
   }
   .projects-header {
-    top:110px;
+    top:109px;
   }
   .projects-header ul li{ 
     display:block;

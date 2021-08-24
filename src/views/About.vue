@@ -12,9 +12,7 @@
         </div>   
         <div v-if="api" class="container-default">
           <div class="text-about">
-            <span style="white-space: pre-wrap;">
-            {{api.texto}}
-            </span>
+            <span style="white-space: pre-wrap;">{{api.texto}}</span>
           </div>
           <div class="subTitle-about">
             Nossa equipe
@@ -46,7 +44,7 @@ export default {
   data() {
     return {
       showAbout: false,
-      defaultOptions: {animationData: animationDataLoading.default}
+      defaultOptions: {animationData: animationDataLoading.default},
     }
   },
   created() {

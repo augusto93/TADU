@@ -84,7 +84,7 @@ export default {
     this.fetchProjetos("/projeto");
   },
   mounted() {
-
+    window.addEventListener("resize", this.marginGrid, false)
   },
   watch: {
     'api': 'pageIn',
@@ -92,9 +92,15 @@ export default {
   updated() {
     this.$nextTick(() => {
       this.gridProjects()
+      this.marginGrid()
     })
   },
   methods: {
+    marginGrid() {
+      let gridTransWidth = document.querySelector(".grid-trans").offsetWidth;
+      let treePercent = gridTransWidth*0.02
+      document.querySelector(".box-gallery:nth-child(3n)").style.marginTop = treePercent + "px";
+    },
     gridProjects() {
       let divs = document.querySelectorAll('.box-gallery'); 
       let divsArr = Array.from(divs);
@@ -182,12 +188,12 @@ export default {
   display:flex;
   flex-direction: row;
   flex-wrap: wrap;
-  gap:30px;
+  justify-content: space-between;
 }
 
 .grid-trans .box-gallery{
   width:49%;
-  max-width: 625px;
+  // max-width: 625px;
   max-height: 394.5px;
 }
 
@@ -208,17 +214,18 @@ export default {
 
 
 @media screen and (max-width: 1280px) {
-  .grid-trans .box-gallery{
-    width:100%;
-    max-width: 1280px;
-    max-height: none;
-  }
+  // .grid-trans .box-gallery{
+  //   width:100%;
+  //   max-width: 1280px;
+  //   max-height: none;
+  // }
 }
 
 @media screen and (max-width: 1024px) {
   .grid-trans .box-gallery{
     width:100%;
     max-height: none;
+    margin-top:3vw !important;
   }
 }
 
