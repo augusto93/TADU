@@ -763,7 +763,7 @@ footer {
 }  
 
 .grid-imgs-project-2 div:first-child, .grid-imgs-project-2 div:nth-child(2){
-  margin-top:0 !important;
+  
 }  
 
 
@@ -831,9 +831,16 @@ footer {
     display: flex;
   }
   .main-img-project {
-    padding: 0 0 3vw 0;
-    height:90vw;
-    margin:unset;
+    // padding: 0 0 3vw 0;
+    // height:90vw;
+    
+    padding:0 0 0 0;
+  }
+   .main-img-project img{
+    height: unset;
+    max-height: unset;
+    width: 100%;
+    object-fit: unset;
   }
   .about-project {
     display: none;
