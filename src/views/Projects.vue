@@ -30,16 +30,16 @@
         <div class="grid-projects2">
           <!-- <transition-group class="grid-trans" name="fade"> -->
           <div class="grid-trans">
-          <div class="box-gallery" :key="projetos.id" v-for="projetos in filteredProjects"   >
-            <router-link :to="{name: 'Project', params:{project: projetos.id}}">
-              <img :src="projetos.fotocapa" />
-              <div class="hover-projects">
-                <div class="animation-hover" :style="{ backgroundColor: [projetos.cor] }">
-                  <div>{{projetos.nome}}</div>
+            <div class="box-gallery" :key="projetos.id" v-for="projetos in filteredProjects"   >
+              <router-link :to="{name: 'Project', params:{project: projetos.id}}">
+                <img :src="projetos.fotocapa" @load="imgsLoading();" />
+                <div class="hover-projects">
+                  <div class="animation-hover" :style="{ backgroundColor: [projetos.cor] }">
+                    <div>{{projetos.nome}}</div>
+                  </div>
                 </div>
-              </div>
-            </router-link>
-          </div>
+              </router-link>
+            </div>
           </div>
           <!-- </transition-group> -->
         </div>
@@ -65,19 +65,22 @@ export default {
       showAbout: false,
       defaultOptions: {animationData: animationData.default},
       categorias: 'todos',
+      totalImgs: 0,
+      totalImgsCarregada:0,
     }
   },
   computed: {
-    filteredProjects: function() {
+    filteredProjects: function() {      
         let categorias = this.categorias;
+        // const filterList = document.querySelectorAll('.teste');
         
         if(categorias === "todos") {
-          return this.api
+          return this.api;
         } else {
           return this.api.filter(function(projetos) {
             return projetos.categoria === categorias;
           });
-        }
+        } 
     }
   },
   created() {
@@ -87,19 +90,39 @@ export default {
     window.addEventListener("resize", this.marginGrid, false)
   },
   watch: {
-    'api': 'pageIn',
+    // 'api': 'pageIn',
   },
   updated() {
     this.$nextTick(() => {
-      this.gridProjects()
+      // this.gridProjects()
       this.marginGrid()
     })
   },
   methods: {
+    imgsLoading() {
+      this.totalImgs = this.filteredProjects.length;
+      this.totalImgsCarregada++;
+
+      if (this.totalImgs == this.totalImgsCarregada) {
+        this.loading = false;
+        this.pageIn();
+        this.filterOn();
+      }
+    },
     marginGrid() {
       let gridTransWidth = document.querySelector(".grid-trans").offsetWidth;
       let treePercent = gridTransWidth*0.02
-      document.querySelector(".box-gallery:nth-child(3n)").style.marginTop = treePercent + "px";
+      // document.querySelector(".box-gallery:nth-child(3n)").style.marginTop = treePercent + "px";
+      let boxGallery = document.querySelectorAll(".box-gallery");
+      let boxGalleryToArray = Array.from(boxGallery);
+      
+      boxGalleryToArray.forEach((element) => {
+        element.style.marginTop = "0px";
+      });
+      boxGalleryToArray.splice(0, 2);
+      boxGalleryToArray.forEach((element) => {
+        element.style.marginTop = treePercent + "px";
+      });
     },
     gridProjects() {
       let divs = document.querySelectorAll('.box-gallery'); 
@@ -113,7 +136,9 @@ export default {
         // console.log('é múltiplo');
       }else {
         // console.log('não é múltiplo')
-        lastDiv.style.gridColumn="span 2"
+        lastDiv.style.width ="100%";
+        lastDiv.style.maxHeight ="775px";
+        lastDiv.style.maxWidth ="1280px";
       }
     },
     

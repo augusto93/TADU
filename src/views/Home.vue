@@ -5,20 +5,19 @@
     <TaduSvg></TaduSvg>
     <section class="all">
       <div class="main-imgs">
-        <div style="margin: -150px 0 0 0;" v-if="loading">
+        <div style="position: absolute; margin: -10px 0 0 0;" v-if="loading">
           <p>carregando...</p>
         </div>
-        <div class="seta-dropdown bounce" style="position:absolute; left:10px; top:-145px; height:100%;" v-if="api">
-          
-        </div>
-        <ul v-if="api">
+        <div class="seta-dropdown bounce" style="position:absolute; left:10px; top:-5vh; height:100%;" v-if="!loading"></div>
+        <ul class="teste-ul" v-if="api">
           <li v-for="projeto in filterProjetosHome" :key="projeto.id">
             <div class="box-img-home">
-              <router-link :to="{name: 'Project', params:{project: projeto.id}}"><img :src="projeto.fotocapa" /></router-link>
+              <router-link :to="{name: 'Project', params:{project: projeto.id}}">
+                <img class="teste" :src="projeto.fotocapa" @load="imgsLoading();" />
+              </router-link>
             </div>
             <p>{{projeto.nome}}</p>
           </li>
-          
         </ul>
       </div>
     </section>
@@ -39,7 +38,10 @@ export default {
   data() {
     return {
       showAbout: false,
-      defaultOptions2: {animationData: animationDataOpening.default, loop: false}
+      isLoaded: false,
+      defaultOptions2: {animationData: animationDataOpening.default, loop: false},
+      totalImgs: 0,
+      totalImgsCarregada:0,
     }
   },
   computed: {
@@ -52,11 +54,10 @@ export default {
     document.addEventListener('scroll', this.setaDropDown);
   },
   destroyed () {
-    window.removeEventListener('scroll', this.setaDropDown);
+    document.removeEventListener('scroll', this.setaDropDown);
   },
   mounted() {
     this.taduSize();
-    
     window.addEventListener("resize", function () {
       if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) === false) {
         window.location.reload();
@@ -87,6 +88,22 @@ export default {
   },
 
   methods: {
+    imgsLoading() {
+      this.totalImgs = this.filterProjetosHome.length;
+      this.totalImgsCarregada++;
+      
+      if (this.totalImgs == this.totalImgsCarregada) {
+        const imgs = document.querySelectorAll('.main-imgs img');
+        const ulImgs = document.querySelector('.teste-ul');
+
+        imgs.forEach(element => {
+          element.style.opacity = 1;
+        });
+
+        ulImgs.style.maxHeight = "10000px";
+        this.loading = false;
+      }
+    },
     setaDropDown: function() {
       const distanceToTop = window.pageYOffset;
       let seta = document.querySelector('.seta-dropdown');
@@ -147,6 +164,11 @@ export default {
   }
   .st1 {
     fill: #fff;
+  }
+  .teste-ul {
+    max-height: 0;
+    position: relative;
+    overflow: hidden;
   }
   .seta-dropdown{
     // display:none;

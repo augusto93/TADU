@@ -58,6 +58,7 @@ export default {
   },
   methods: {
     pageIn() {
+      this.loading = false;
       setTimeout(() => {
         this.tlPageIn = this.$gsap.timeline()
         this.tlPageIn
@@ -106,7 +107,7 @@ export default {
 /* ABOUT */
 .subTitle-about {
   margin:0 0 60px 0;
-  text-align: center;
+  text-align: left;
 }
 
 .img-about-flex {

@@ -53,6 +53,7 @@ export default {
   },
   methods: {
     pageIn(){
+      this.loading = false;
       setTimeout(() => {
         this.tlPageIn = this.$gsap.timeline()
         this.tlPageIn

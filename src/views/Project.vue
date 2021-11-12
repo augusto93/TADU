@@ -63,7 +63,7 @@
         </div> -->
         <div class="grid-imgs-project-2">
           <div v-for="fotos in api.galeria" :key="fotos.foto_id">
-            <img :src="fotos.foto" alt="Projetos"> 
+            <img :src="fotos.foto" alt="Projetos" @load="imgsLoading();"> 
           </div>
         </div>
         
@@ -111,6 +111,8 @@ export default {
       showAbout: false,
       readMoreActivated: false,
       defaultOptions: {animationData: animationData.default},
+      totalImgs: 0,
+      totalImgsCarregada:0,
     }
   },
   props:['expShowMenu', 'project'],
@@ -140,16 +142,19 @@ export default {
        this.fetchProjetos(`/projeto/${this.project}`);
        this.fetchListaProjetos(`/projeto`);
     },
-    'api': 'pageIn',
+    // 'api': 'pageIn',
   },
   methods: {
-    marginGrid() {
-      let gridTransWidth = document.querySelector(".grid-imgs-project-2").offsetWidth;
-      let treePercent = gridTransWidth*0.02
-      let allDivs =  document.querySelectorAll(".grid-imgs-project-2 div");
-      allDivs.forEach((e) => {
-        e.style.marginTop = treePercent + "px"
-      });
+    imgsLoading() {
+      this.totalImgs = this.api.galeria.length;
+      this.totalImgsCarregada++;
+      if (this.totalImgs == this.totalImgsCarregada) {
+        this.loading = false;
+        this.pageIn();
+        this.marginGrid();
+        this.gridProjects();
+        this.totalImgsCarregada = 0;
+      }
     },
     activateReadMore(){
       this.readMoreActivated = !this.readMoreActivated;
@@ -264,11 +269,42 @@ export default {
       y: -100,
       duration: 0.3
       }) 
-    }
+    },
+    marginGrid() {
+      let gridTransWidth = document.querySelector(".grid-imgs-project-2").offsetWidth;
+      let treePercent = gridTransWidth*0.02
+      let allDivs =  document.querySelectorAll(".grid-imgs-project-2 div");
+      let allDivsGrid = Array.from(allDivs);
+        allDivsGrid.forEach((element) => {
+          element.style.marginTop = "0px";
+        });
+        allDivsGrid.splice(0, 2);
+        allDivsGrid.forEach((e) => {
+          e.style.marginTop = treePercent + "px"
+        });
+    },
+    gridProjects() {
+      let divs = document.querySelectorAll('.grid-imgs-project-2 div'); 
+      let divsArr = Array.from(divs);
+      let lastDiv = divsArr.pop(); 
+      let arraySize = divsArr.length;
+      let fixNumberArr = arraySize + 1;
+      let fixNumberArr2 = fixNumberArr + 1;
+
+      if(fixNumberArr % 3 === 0 || (fixNumberArr2 % 3) === 0) {
+        // console.log('é múltiplo');
+      }else {
+        // console.log('não é múltiplo')
+        lastDiv.style.width ="100%";
+        lastDiv.style.maxWidth ="1280px";
+      }
+    },
   },
   updated() {
     this.$nextTick(() => {
-      this.marginGrid()
+      // this.pageIn();
+      // this.marginGrid();
+      // this.gridProjects();
     })
   },
   beforeRouteLeave(to, from, next) {

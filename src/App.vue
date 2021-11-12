@@ -339,7 +339,7 @@ export default {
   .main-imgs {
   position: relative;
   width: 80%;
-  margin-top: 110vh;
+  margin-top: 90vh;
   }
 
 .main-imgs ul li {
@@ -359,7 +359,8 @@ export default {
   min-height: 415px;
   object-fit: cover;
   transform: scale(1);
-  transition: all .5s ease; 
+  opacity: 0;
+  transition: transform .5s ease, opacity 1s ease;
 }
 
  .main-imgs ul li:hover img{
@@ -430,7 +431,7 @@ footer {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  background-color: black;
+  // background-color: black;
   cursor: pointer;
 }
 
@@ -670,7 +671,7 @@ footer {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  background-color: #000000;
+  // background-color: #000000;
   cursor: pointer;
 }
 .plus-straps {
@@ -938,6 +939,10 @@ footer {
     width: 90%;
     margin-left: 5%;
     margin-right: 5%;
+    margin-top:50vh;
+  }
+  .seta-dropdown {
+    display:none;
   }
   // .container-gallery {
   //   padding: 100px 0 0 0;

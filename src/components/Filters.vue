@@ -1,12 +1,12 @@
 <template>
   <div class="filters">
     <div class="selected-filter">
-      <p class="allfilter">{{this.$parent.categorias.charAt(0).toUpperCase() + this.$parent.categorias.substring(1)}}</p>
+      <p v-if="!showDropdown" class="allfilter">{{this.$parent.categorias.charAt(0).toUpperCase() + this.$parent.categorias.substring(1)}}</p>
       <div @click="clickDropdown" :class="{ dropdownActive: showDropdown }" class="seta-dropdown"></div>
     </div>
     <transition name="dropdown">
-    <ul v-if="showDropdown">
-      <li @click="setFilter('todos')">Todos</li>
+    <ul class="filter-list" v-if="showDropdown">
+      <li class="filter-on" @click="setFilter('todos')">Todos</li>
       <li @click="setFilter('residencial')">Residencial</li>
       <li @click="setFilter('comercial')">Comercial</li>
       <li @click="setFilter('hotelaria')">Hotelaria</li>
@@ -29,6 +29,17 @@ export default {
     window.addEventListener("resize", this.showFiltersDesktop);
   },
   methods: {
+    filterOn() {
+      let filterList = document.querySelectorAll(".filter-list li");
+      filterList.forEach((element) => {
+        element.addEventListener('click', function(){
+          filterList.forEach((e) => {
+          e.classList.remove("filter-on");
+          });  
+          element.classList.add("filter-on");
+        })
+      })
+    },
     clickDropdown() {
       this.showDropdown = !this.showDropdown
     },
@@ -88,9 +99,9 @@ export default {
     justify-content: space-between;
   }
 
-  .filters .selected-filter{
-    padding:0 3% 0 0;
-  }
+  // .filters .selected-filter{
+  //   // padding:0 3% 0 0;
+  // }
 
   .seta-dropdown{
     display:none;
@@ -116,6 +127,9 @@ export default {
   }
   .allfilter {
     color:#FFFFFF;
+  }
+  .filter-on{
+    color:#FFFFFF !important;
   }
 
 

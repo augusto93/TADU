@@ -15,10 +15,10 @@ export default {
       .then(r => r.json())
       .then(r => {
         // setTimeout(() => {
-          this.api = r;
-          this.loading = false;
+        this.api = r;
         // }, 5000)
       })
+      
     },
     fetchListaProjetos(url) {
       this.listaProjetos = null;
