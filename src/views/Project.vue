@@ -275,13 +275,19 @@ export default {
       let treePercent = gridTransWidth*0.02
       let allDivs =  document.querySelectorAll(".grid-imgs-project-2 div");
       let allDivsGrid = Array.from(allDivs);
-        allDivsGrid.forEach((element) => {
-          element.style.marginTop = "0px";
-        });
-        allDivsGrid.splice(0, 2);
-        allDivsGrid.forEach((e) => {
-          e.style.marginTop = treePercent + "px"
-        });
+      allDivsGrid.forEach((element) => {
+        element.style.marginTop = "0px";
+      });
+      allDivsGrid.splice(0, 2);
+      allDivsGrid.forEach((e) => {
+        e.style.marginTop = treePercent + "px"
+      });
+
+      let mediaJs1024 = window.matchMedia("(max-width: 1024px)");
+      if(mediaJs1024.matches) {
+        let mainImgProject = document.querySelector('.main-img-project');
+        mainImgProject.style.marginBottom = treePercent + "px"
+      } 
     },
     gridProjects() {
       let divs = document.querySelectorAll('.grid-imgs-project-2 div'); 
