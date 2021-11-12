@@ -275,6 +275,8 @@ export default {
       let treePercent = gridTransWidth*0.02
       let allDivs =  document.querySelectorAll(".grid-imgs-project-2 div");
       let allDivsGrid = Array.from(allDivs);
+      let allDivsGridMob = Array.from(allDivs);
+      
       allDivsGrid.forEach((element) => {
         element.style.marginTop = "0px";
       });
@@ -285,8 +287,10 @@ export default {
 
       let mediaJs1024 = window.matchMedia("(max-width: 1024px)");
       if(mediaJs1024.matches) {
-        let mainImgProject = document.querySelector('.main-img-project');
-        mainImgProject.style.marginBottom = treePercent + "px"
+        allDivsGridMob.slice(0, 2);
+        allDivsGridMob.forEach((el) => {
+          el.style.marginTop = treePercent + "px"
+        })
       } 
     },
     gridProjects() {
