@@ -339,7 +339,7 @@ export default {
   .main-imgs {
   position: relative;
   width: 80%;
-  margin-top: 90vh;
+  margin-top: 50vh;
   }
 
 .main-imgs ul li {
@@ -767,6 +767,10 @@ footer {
   
 }  
 
+.carregando {
+  position: absolute; 
+  margin: -10px 0 0 0;
+}
 
 @media screen and (max-width: 1280px) {
   section.all {
@@ -868,12 +872,21 @@ footer {
   .hide_header{
     display:none;
   }
+  .carregando {
+  position: fixed; 
+  margin:0;
+  top:15px;
+  }
+  .grid-imgs-project-2 div {
+    width:100%
+  }
 }
 
 @media screen and (max-width: 768px) {
   .grid-projects {
     // grid-auto-rows: 464px;
   }
+  
 }
 
 @media screen and (max-width: 540px) {

@@ -5,10 +5,10 @@
     <TaduSvg></TaduSvg>
     <section class="all">
       <div class="main-imgs">
-        <div style="position: absolute; margin: -10px 0 0 0;" v-if="loading">
+        <div class="carregando" v-if="loading">
           <p>carregando...</p>
         </div>
-        <div class="seta-dropdown bounce" style="position:absolute; left:10px; top:-5vh; height:100%;" v-if="!loading"></div>
+        <!-- <div class="seta-dropdown bounce" style="position:absolute; left:10px; top:-5vh; height:100%;" v-if="!loading"></div> -->
         <ul class="teste-ul" v-if="api">
           <li v-for="projeto in filterProjetosHome" :key="projeto.id">
             <div class="box-img-home">
@@ -51,10 +51,10 @@ export default {
   },
   created() {
     this.fetchProjetos("/projeto");
-    document.addEventListener('scroll', this.setaDropDown);
+    // document.addEventListener('scroll', this.setaDropDown);
   },
   destroyed () {
-    document.removeEventListener('scroll', this.setaDropDown);
+    // document.removeEventListener('scroll', this.setaDropDown);
   },
   mounted() {
     this.taduSize();
@@ -104,17 +104,17 @@ export default {
         this.loading = false;
       }
     },
-    setaDropDown: function() {
-      const distanceToTop = window.pageYOffset;
-      let seta = document.querySelector('.seta-dropdown');
-       if (distanceToTop != 0){
-        //  this.setaDrop = false
-        seta.classList.add("seta-off");
-       }else {
-        //  this.setaDrop = true
-        seta.classList.remove("seta-off");
-       }
-    },
+    // setaDropDown: function() {
+    //   const distanceToTop = window.pageYOffset;
+    //   let seta = document.querySelector('.seta-dropdown');
+    //    if (distanceToTop != 0){
+    //     //  this.setaDrop = false
+    //     seta.classList.add("seta-off");
+    //    }else {
+    //     //  this.setaDrop = true
+    //     seta.classList.remove("seta-off");
+    //    }
+    // },
     taduSize() {
       let userViewHeight = window.innerHeight;
       let taduDiv = document.querySelector(".svg").clientHeight
