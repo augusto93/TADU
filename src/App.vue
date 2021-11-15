@@ -579,6 +579,7 @@ footer {
   opacity: 0;
   height: 0;
   min-height: 80px;
+  visibility: hidden;
 }
 
 .about-project .about-project-bl1 p {

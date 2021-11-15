@@ -150,6 +150,7 @@ export default {
       this.totalImgsCarregada++;
       if (this.totalImgs == this.totalImgsCarregada) {
         this.loading = false;
+        this.checkReadMore();
         this.pageIn();
         this.marginGrid();
         this.gridProjects();
@@ -159,10 +160,22 @@ export default {
     activateReadMore(){
       this.readMoreActivated = !this.readMoreActivated;
     },
+    checkReadMore() {
+      const descricaoLenth = this.api.descricao.length;
+      const more = document.querySelectorAll('.more');
+      const clickexpand = document.querySelector('.about-project .about-project-bl1 p');
+      if (descricaoLenth < 180) {
+        clickexpand.style.pointerEvents = "none";
+        more.forEach((el) => {
+          el.style.display = 'none'
+        });
+      }
+    },
     openActivateReadMore(){
       this.tlopenActivateReadMore = this.$gsap.timeline()
       this.tlopenActivateReadMore
       .to('.bloco2-about', {
+        visibility: "visible",
         opacity: 1,
         height: "auto",
         duration: .5, 
@@ -190,8 +203,11 @@ export default {
       .to('.bloco2-about', {
         opacity: 0,
         height: 0,
-        duration: 1, 
-        ease: 'power2.out',
+        duration: .5, 
+        ease: 'power2.out'
+      })
+      .to('.bloco2-about', {
+        visibility: "hidden",
       })
     },
     pageIn(){
@@ -223,6 +239,7 @@ export default {
           ease: 'power1.in',
           onComplete: () => {
            this.$router.push({ name: 'Project', params:{project: prevproject.id}  });
+           this.readMoreActivated = false;
           }, 
         })
       }
@@ -241,6 +258,7 @@ export default {
           ease: 'power1.in',
           onComplete: () => {
            this.$router.push({ name: 'Project', params:{project: nextproject.id}  });
+           this.readMoreActivated = false;
           }, 
         })  
       }
