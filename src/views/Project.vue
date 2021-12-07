@@ -149,6 +149,7 @@ export default {
       this.totalImgs = this.api.galeria.length;
       this.totalImgsCarregada++;
       if (this.totalImgs == this.totalImgsCarregada) {
+      // if (this.totalImgsCarregada === 4) {
         this.loading = false;
         this.checkReadMore();
         this.pageIn();
@@ -156,6 +157,7 @@ export default {
         this.gridProjects();
         this.totalImgsCarregada = 0;
       }
+      
     },
     activateReadMore(){
       this.readMoreActivated = !this.readMoreActivated;
@@ -330,6 +332,7 @@ export default {
   },
   updated() {
     this.$nextTick(() => {
+      
       // this.pageIn();
       // this.marginGrid();
       // this.gridProjects();
