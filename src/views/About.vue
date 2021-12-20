@@ -149,5 +149,29 @@ export default {
   padding:5px 0 0 20px;
 
 }
+
+
+@media screen and (max-width: 500px) {
+  .img-about-flex {
+    display: block;
+  }
+  .img-about {
+    flex-direction: column;
+  }
+
+  .img-about img{
+    max-width: unset;
+    max-height: unset;
+    min-height: unset;
+    object-fit: cover;
+    width:100%;
+  }
+
+  .img-about div {
+    width: 100%;
+    max-width: 173px;
+    padding:5px 0 0 0;
+  }
+}
 /* END ABOUT */
 </style>

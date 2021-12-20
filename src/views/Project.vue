@@ -149,13 +149,16 @@ export default {
       this.totalImgs = this.api.galeria.length;
       this.totalImgsCarregada++;
       if (this.totalImgs == this.totalImgsCarregada) {
-      // if (this.totalImgsCarregada === 4) {
+      // if (this.totalImgsCarregada == 4) {
         this.loading = false;
         this.checkReadMore();
         this.pageIn();
         this.marginGrid();
         this.gridProjects();
+        // console.log(this.totalImgsCarregada)
         this.totalImgsCarregada = 0;
+        // console.log(this.totalImgsCarregada)
+        
       }
       
     },
