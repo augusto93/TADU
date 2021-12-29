@@ -27,7 +27,7 @@ export default {
       .then(r => r.json())
       .then(r => {
           this.listaProjetos = r;
-          this.firstAndLastProject();
+          // this.firstAndLastProject();
       })
     },
   }

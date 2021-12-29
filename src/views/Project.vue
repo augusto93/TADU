@@ -141,6 +141,7 @@ export default {
      $route (){
        this.fetchProjetos(`/projeto/${this.project}`);
        this.fetchListaProjetos(`/projeto`);
+       this.totalImgsCarregada = 0;
     },
     // 'api': 'pageIn',
   },
@@ -148,19 +149,16 @@ export default {
     imgsLoading() {
       this.totalImgs = this.api.galeria.length;
       this.totalImgsCarregada++;
-      if (this.totalImgs == this.totalImgsCarregada) {
-      // if (this.totalImgsCarregada == 4) {
+      console.log(this.totalImgsCarregada)
+      // if (this.totalImgs == this.totalImgsCarregada) {
+      if (this.totalImgsCarregada === 4) {
         this.loading = false;
         this.checkReadMore();
         this.pageIn();
         this.marginGrid();
         this.gridProjects();
-        // console.log(this.totalImgsCarregada)
-        this.totalImgsCarregada = 0;
-        // console.log(this.totalImgsCarregada)
-        
-      }
-      
+        // this.totalImgsCarregada = 0;
+      } 
     },
     activateReadMore(){
       this.readMoreActivated = !this.readMoreActivated;
@@ -229,12 +227,24 @@ export default {
         duration: .8, 
         ease: 'power2.out' 
       })
-      }, 0)        
+      }, 0)       
     },
     prevProject(){
       let prevproject = this.listaProjetos[this.routeIndex - 1];
+      let lastProject = this.listaProjetos[this.listaProjetos.length -1]
       if(this.routeIndex === 0){
-        // console.log('testeacabou')
+        this.tlPageOut = this.$gsap.timeline();
+        this.tlPageOut.to('.container-gallery2', {
+          opacity: 0,
+          y:300, 
+          duration: .3, 
+          ease: 'power1.in',
+          onComplete: () => {
+           this.$router.push({ name: 'Project', params:{project: lastProject.id}  });
+           this.readMoreActivated = false;
+          }, 
+        })
+        
       } else {
         this.tlPageOut = this.$gsap.timeline();
         this.tlPageOut.to('.container-gallery2', {
@@ -252,8 +262,19 @@ export default {
     nextProject(){
       let nextproject = this.listaProjetos[this.routeIndex + 1];
       let lastItem = this.listaProjetos.length -1
+      let firstProject = this.listaProjetos[0]
       if(this.routeIndex === lastItem) {
-      //  console.log("acabou")
+        this.tlPageOut = this.$gsap.timeline();
+        this.tlPageOut.to('.container-gallery2', {
+          opacity: 0,
+          y:300, 
+          duration: .3, 
+          ease: 'power1.in',
+          onComplete: () => {
+           this.$router.push({ name: 'Project', params:{project: firstProject.id}  });
+           this.readMoreActivated = false;
+          }, 
+        }) 
       }else {
         this.tlPageOut = this.$gsap.timeline();
         this.tlPageOut.to('.container-gallery2', {
@@ -268,22 +289,22 @@ export default {
         })  
       }
     },
-    firstAndLastProject(){
-      let lastItem = this.listaProjetos.length -1;
-      let prev = document.querySelectorAll(".prev");
-      let next = document.querySelectorAll(".next");
-      if(this.routeIndex === 0){
-        for (let i = 0; i < prev.length; i++) {
-          prev[i].style.pointerEvents = "none";
-        }
-        // console.log('primeira página')
-      } else if(this.routeIndex === lastItem) {
-        for (let i = 0; i < next.length; i++) {
-          next[i].style.pointerEvents = "none";
-        }
-        // console.log('última página')
-      }
-    },
+    // firstAndLastProject(){
+    //   let lastItem = this.listaProjetos.length -1;
+    //   let prev = document.querySelectorAll(".prev");
+    //   let next = document.querySelectorAll(".next");
+    //   if(this.routeIndex === 0){
+    //     for (let i = 0; i < prev.length; i++) {
+    //       prev[i].style.pointerEvents = "none";
+    //     }
+    //     console.log('primeira página')
+    //   } else if(this.routeIndex === lastItem) {
+    //     for (let i = 0; i < next.length; i++) {
+    //       next[i].style.pointerEvents = "none";
+    //     }
+    //     console.log('última página')
+    //   }
+    // },
     taduMobMenu() {
       this.tlPageOut = this.$gsap.timeline()
       this.tlPageOut.to('.tadu', {
@@ -335,7 +356,6 @@ export default {
   },
   updated() {
     this.$nextTick(() => {
-      
       // this.pageIn();
       // this.marginGrid();
       // this.gridProjects();

@@ -91,8 +91,9 @@ export default {
     imgsLoading() {
       this.totalImgs = this.filterProjetosHome.length;
       this.totalImgsCarregada++;
-      
-      if (this.totalImgs == this.totalImgsCarregada) {
+      console.log(this.totalImgsCarregada)
+      // if (this.totalImgs == this.totalImgsCarregada) {
+      if (this.totalImgsCarregada === 4) {
         const imgs = document.querySelectorAll('.main-imgs img');
         const ulImgs = document.querySelector('.teste-ul');
 
@@ -102,6 +103,8 @@ export default {
 
         ulImgs.style.maxHeight = "10000px";
         this.loading = false;
+
+        console.log(this.totalImgsCarregada)
       }
     },
     // setaDropDown: function() {
@@ -148,6 +151,7 @@ export default {
       duration: 0.3,
         onComplete: () => {
           next()
+          this.totalImgsCarregada = 0;
         },
     },"<") 
   },  
