@@ -149,7 +149,7 @@ export default {
     imgsLoading() {
       this.totalImgs = this.api.galeria.length;
       this.totalImgsCarregada++;
-      console.log(this.totalImgsCarregada)
+      // console.log(this.totalImgsCarregada)
       // if (this.totalImgs == this.totalImgsCarregada) {
       if (this.totalImgsCarregada === 4) {
         this.loading = false;

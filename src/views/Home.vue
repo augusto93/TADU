@@ -91,7 +91,7 @@ export default {
     imgsLoading() {
       this.totalImgs = this.filterProjetosHome.length;
       this.totalImgsCarregada++;
-      console.log(this.totalImgsCarregada)
+      // console.log(this.totalImgsCarregada)
       // if (this.totalImgs == this.totalImgsCarregada) {
       if (this.totalImgsCarregada === 4) {
         const imgs = document.querySelectorAll('.main-imgs img');
@@ -104,7 +104,7 @@ export default {
         ulImgs.style.maxHeight = "10000px";
         this.loading = false;
 
-        console.log(this.totalImgsCarregada)
+        // console.log(this.totalImgsCarregada)
       }
     },
     // setaDropDown: function() {
